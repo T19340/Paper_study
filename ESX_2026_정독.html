@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>논문 정독 — Eren·Schrimpf·Xia (2026), 국채 수요의 부문별 탄력성</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Modern CAD Plotter Output — Paper Anatomy Blueprint
+   blueprint-study-note 정본 셸 (paper-study 재사용)
+   ========================================================= */
+:root{
+  --paper:#FFFFFF; --paper-2:#FAFAFA;
+  --ink:#0A0A0A; --ink-2:#2A2A2A; --mute:#6E6E6E; --muted:#6E6E6E;
+  --rule:#0A0A0A; --rule-l:#D6D6D6; --rule-xl:#ECECEC;
+  --cad-red:#C53030; --cad-blue:#2D7EAA; --layer-or:#ED8936;
+  --sans:'Source Sans 3','Malgun Gothic','맑은 고딕',system-ui,sans-serif;
+  --serif:'Source Serif 4','Nanum Myeongjo','바탕',Georgia,serif;
+  --mono:'IBM Plex Mono','D2Coding',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);}
+body{font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--ink);
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:1100px;margin:0 auto;padding:36px 50px 54px;
+  border-left:1px solid var(--rule-xl);border-right:1px solid var(--rule-xl);}
+a{color:var(--cad-red);text-decoration:none;border-bottom:1px solid var(--rule-l);}
+a:hover{border-bottom-color:var(--cad-red);}
+b,strong{font-weight:700;}
+i,em{font-style:italic;}
+
+/* ── Top strip · 프로젝트 태그 + ISO 7200 타이틀 블록 ── */
+header.mast{display:grid;grid-template-columns:1fr 322px;gap:26px;
+  align-items:start;padding-bottom:20px;border-bottom:1.5px solid var(--rule);
+  margin-bottom:38px;}
+.mast .firm{grid-column:1;grid-row:1;font-family:var(--mono);
+  font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cad-red);margin-bottom:3px;}
+.mast .series{grid-column:1;grid-row:2;font-family:var(--mono);
+  font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:11px;}
+.mast h1{grid-column:1;grid-row:3;font-family:var(--serif);font-weight:600;
+  font-size:31px;line-height:1.18;letter-spacing:-.01em;color:var(--ink);
+  margin:0 0 10px;font-variation-settings:'opsz' 36;}
+.mast .subtitle{grid-column:1;grid-row:4;font-family:var(--sans);
+  font-weight:400;font-size:15.5px;line-height:1.5;color:var(--ink-2);
+  margin:0;max-width:600px;}
+.mast .metarow{grid-column:2;grid-row:1 / span 4;align-self:start;
+  border:1px solid var(--rule);background:var(--paper);font-family:var(--mono);
+  font-size:10.5px;}
+.mast .metarow .iso-row{display:grid;grid-template-columns:78px 1fr;
+  border-bottom:.5px solid var(--rule);}
+.mast .metarow .iso-row:last-child{border-bottom:0;}
+.mast .metarow .iso-row .k{padding:6px 9px;border-right:.5px solid var(--rule);
+  letter-spacing:.05em;color:var(--mute);font-weight:500;background:var(--paper-2);}
+.mast .metarow .iso-row .v{padding:6px 9px;color:var(--ink);
+  letter-spacing:.02em;font-weight:500;line-height:1.45;}
+
+/* ── 본문 2단 · 콘텐츠 + 레이어 패널 ── */
+.with-layer-panel{display:grid;grid-template-columns:1fr 264px;gap:30px;
+  align-items:start;}
+.content{min-width:0;}
+html{scroll-behavior:smooth;}
+.panel-rail{position:sticky;top:18px;display:flex;flex-direction:column;
+  gap:14px;max-height:calc(100vh - 34px);overflow-y:auto;}
+.tool-panel{border:1px solid var(--rule);background:var(--paper-2);
+  font-family:var(--mono);}
+.tool-panel .p-head{background:var(--ink);color:var(--paper);font-size:9px;
+  font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:7px 12px;}
+.nav-panel{padding-bottom:7px;}
+.nav-panel .p-grp{font-size:8.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mute);padding:11px 12px 3px;}
+.nav-panel a{display:flex;gap:7px;padding:3.5px 12px 3.5px 13px;font-size:11px;
+  color:var(--ink-2);text-decoration:none;border-bottom:none;
+  border-left:2px solid transparent;letter-spacing:.01em;}
+.nav-panel a:hover{color:var(--cad-red);background:#F0F0F0;}
+.nav-panel a .nl-n{min-width:23px;font-size:10px;font-weight:600;color:var(--mute);}
+.nav-panel a.grp-link{font-weight:600;color:var(--ink);margin-top:5px;}
+.nav-panel a.active{color:var(--cad-red);background:var(--paper);
+  border-left-color:var(--cad-red);font-weight:600;}
+.nav-panel a.active .nl-n{color:var(--cad-red);}
+.formula-panel{padding:0 0 4px;}
+.fcard{display:none;}
+.fcard.fc-on{display:block;}
+.fblock{padding:9px 13px 11px;border-top:.5px solid var(--rule-l);}
+.fblock:first-child{border-top:none;}
+.fb-eq{font-size:13px;text-align:center;color:var(--ink);margin:3px 0 9px;}
+.fb-eq mjx-container{margin:0 !important;}
+.fb-eq mjx-container svg{max-width:100%;}
+.fb-note{font-family:var(--sans);font-size:10.5px;line-height:1.55;
+  color:var(--ink-2);margin:1px 0 9px;}
+.fb-note b{color:var(--cad-red);font-weight:600;}
+.fv-h{font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);margin:4px 0 3px;}
+.fv{padding:3px 0;font-size:10px;line-height:1.5;color:var(--mute);}
+.fv .s{font-size:11.5px;color:var(--ink);margin-right:2px;}
+.fv .d{font-family:var(--sans);color:var(--mute);}
+
+/* ── 핵심 요지 ── */
+.summary{border:1px solid var(--rule-l);border-top:3px solid var(--cad-red);
+  background:var(--paper-2);padding:17px 22px;margin:0 0 30px;}
+.summary h2{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--cad-red);margin:0 0 11px;}
+.summary p{margin:8px 0;font-size:14.5px;line-height:1.7;}
+.summary ul{margin:9px 0 0;padding-left:20px;font-size:14.5px;}
+.summary li{margin:5px 0;line-height:1.6;}
+
+/* ── 목차 ── */
+nav.toc{border:1px solid var(--rule);margin:0 0 30px;padding-bottom:13px;}
+nav.toc h2{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper-2);border-bottom:1px solid var(--rule);
+  padding:9px 16px;margin:0;}
+nav.toc .grp{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cad-red);
+  margin:14px 0 0;padding:0 16px;}
+nav.toc ul{margin:6px 0 0;padding:0 16px 0 36px;list-style:none;}
+nav.toc li{margin:5px 0;font-size:14px;}
+nav.toc a{color:var(--ink);border-bottom:none;}
+nav.toc a:hover{color:var(--cad-red);}
+
+/* ── 섹션 헤딩 · CAD 섹션 태그 ── */
+h3.sec{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:center;
+  margin:46px 0 20px;padding-bottom:9px;border-bottom:1.5px solid var(--rule);
+  font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.005em;
+  color:var(--ink);}
+h3.sec .sn{display:inline-flex;align-items:center;justify-content:center;
+  min-width:24px;height:24px;padding:0 6px;border:1.2px solid var(--cad-red);
+  color:var(--cad-red);font-family:var(--mono);font-size:11.5px;font-weight:700;
+  background:var(--paper);}
+h4.sub{font-family:var(--sans);font-weight:600;font-size:12px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cad-red);
+  margin:30px 0 11px;}
+
+/* ── 본문 ── */
+p{font-size:15px;line-height:1.75;margin:0 0 16px;color:var(--ink);}
+.lead-q{font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--ink-2);
+  border-left:3px solid var(--cad-red);padding-left:15px;margin:0 0 18px;}
+ul.body,ol.body{font-size:15px;line-height:1.75;margin:0 0 16px;padding-left:22px;}
+ul.body li,ol.body li{margin:7px 0;}
+
+/* ── 수식 · Engineering Note ── */
+.eq{cursor:pointer;position:relative;background:var(--paper-2);
+  border:1px solid var(--rule-l);border-left:3px solid var(--cad-red);
+  padding:24px 24px 16px;margin:24px 0;overflow-x:auto;
+  transition:background .2s,border-color .2s;}
+.eq::before{content:"NOTE / EQ";position:absolute;top:7px;left:20px;
+  font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.18em;
+  color:var(--cad-red);}
+.eq:hover{background:#F4F4F4;border-left-color:var(--ink);}
+.eq::after{content:"⊕ CLICK TO COPY LATEX";position:absolute;bottom:5px;right:13px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;
+  color:var(--mute);opacity:0;transition:opacity .2s;}
+.eq:hover::after{opacity:1;}
+.eqi{cursor:pointer;border-bottom:1px dotted var(--rule-l);}
+.eqi:hover{background:#F4F4F4;}
+
+/* ── MathJax 수식 SVG ── */
+mjx-container[jax="SVG"]{max-width:100%;}
+mjx-container[jax="SVG"] svg{max-width:100%;height:auto;}
+.eq mjx-container[jax="SVG"][display="true"]{margin:0!important;}
+.eq mjx-container[jax="SVG"]{font-size:106%;}
+
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;
+  opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;}
+
+/* ── 콜아웃 ── */
+.note{border:1px solid var(--rule-l);border-left:3px solid var(--cad-blue);
+  background:var(--paper-2);padding:12px 16px;margin:18px 0;font-size:14px;
+  color:var(--ink-2);line-height:1.7;}
+.note b{color:var(--cad-blue);font-weight:700;}
+.warn{border:1px solid var(--rule-l);border-left:3px solid var(--cad-red);
+  background:var(--paper-2);padding:12px 16px;margin:18px 0;font-size:14px;
+  color:var(--ink-2);line-height:1.7;}
+.warn b{color:var(--cad-red);font-weight:700;}
+
+/* ── 도표 · Exhibit (CAD plotter chart) ── */
+figure{margin:30px 0;}
+.fig{border:1px solid var(--rule);background:var(--paper);}
+.figtag{font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.1em;color:var(--ink);background:var(--paper-2);
+  border-bottom:1px solid var(--rule);padding:9px 16px;}
+.figtag::before{content:"";display:inline-block;width:7px;height:7px;
+  background:var(--cad-red);margin-right:8px;vertical-align:1px;}
+.fig > svg{display:block;width:100%;height:auto;padding:16px 18px 6px;}
+figcaption{font-family:var(--sans);font-size:11.5px;line-height:1.6;
+  color:var(--mute);border-top:.5px solid var(--rule-l);
+  padding:9px 16px 11px;margin:0;}
+figcaption b{font-weight:700;color:var(--ink-2);}
+
+/* ── 표 · Schedule ── */
+table.tbl{width:100%;border-collapse:collapse;margin:22px 0;
+  font-family:var(--sans);font-size:13px;border:1px solid var(--rule);}
+table.tbl thead th{background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-weight:500;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;
+  text-align:left;vertical-align:bottom;}
+table.tbl td{padding:8px 12px;border-bottom:.5px solid var(--rule-l);
+  text-align:left;vertical-align:top;line-height:1.55;}
+table.tbl tbody tr:nth-child(even) td{background:var(--paper-2);}
+table.tbl tbody tr:last-child td{border-bottom:0;}
+table.tbl code{font-size:12px;}
+.tbl .num{font-family:var(--mono);font-size:12px;text-align:right;white-space:nowrap;}
+
+/* ── 코드 / 셀 / 접이식 ── */
+code{font-family:var(--mono);font-size:.86em;background:var(--paper-2);
+  border:1px solid var(--rule-l);padding:1px 5px;}
+details.out,details.key{border-top:1px solid var(--rule-l);}
+details.key{margin:22px 0;border:1px solid var(--rule);}
+summary{cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;padding:9px 15px;color:var(--ink);
+  background:var(--paper-2);list-style:none;user-select:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"+  ";color:var(--cad-red);font-weight:700;}
+details[open] summary::before{content:"−  ";}
+details.key summary{color:var(--cad-red);}
+.keybody{font-family:var(--sans);padding:9px 16px 14px;font-size:13px;
+  color:var(--ink-2);}
+.keybody p{font-size:13.5px;line-height:1.7;}
+
+/* ── 지위 배지 ── */
+.chip{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;
+  letter-spacing:.08em;padding:1.5px 7px;border:1.2px solid var(--ink-2);
+  color:var(--ink-2);vertical-align:3px;margin-left:10px;white-space:nowrap;}
+.chip.wp{border-color:var(--cad-red);color:var(--cad-red);}
+.tbl .chip{margin-left:0;vertical-align:1px;}
+
+/* ── 참고문헌 · 고지 ── */
+.refs{margin-top:46px;border-top:1.5px solid var(--rule);padding-top:18px;}
+.refs h2{font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);}
+.refs ol{padding-left:22px;}
+.refs li{font-family:var(--sans);font-size:12px;line-height:1.7;
+  color:var(--mute);margin-bottom:9px;}
+.refs li a{color:var(--cad-red);border-bottom:none;word-break:break-all;}
+.disclaimer{margin-top:20px;font-family:var(--sans);font-size:11px;
+  line-height:1.55;color:var(--mute);}
+.disclaimer b{font-weight:600;color:var(--ink-2);}
+footer{margin-top:26px;border-top:1.5px solid var(--rule);padding-top:13px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mute);text-align:center;}
+
+@media (max-width:980px){
+  .wrap{padding:24px;border-left:0;border-right:0;}
+  header.mast{grid-template-columns:1fr;}
+  .mast .firm,.mast .series,.mast h1,.mast .subtitle{grid-column:1;}
+  .mast .metarow{grid-column:1;grid-row:auto;margin-top:14px;}
+  .with-layer-panel{grid-template-columns:1fr;}
+  .panel-rail{position:static;max-height:none;overflow:visible;}
+}
+
+/* ── 원문 인용 박스 (원전 정독) ── */
+.src{border:1px solid var(--rule-l);border-left:3px solid var(--cad-blue);
+  background:#FAFCFD;margin:18px 0;padding:0;}
+.src .src-tag{font-family:var(--mono);font-size:8.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cad-blue);
+  background:var(--paper-2);border-bottom:.5px solid var(--rule-l);padding:5px 13px;}
+.src .src-en{font-family:var(--serif);font-style:italic;font-size:13.5px;
+  line-height:1.62;color:var(--ink-2);margin:0;padding:11px 16px 5px;}
+.src .src-ko{font-family:var(--sans);font-size:12.5px;line-height:1.62;
+  color:var(--mute);margin:0;padding:2px 16px 12px;}
+.src .src-ko::before{content:"\25B8 ";color:var(--cad-blue);font-weight:600;}
+</style>
+</head>
+<body>
+<div id="toast">LaTeX 수식이 복사되었습니다</div>
+<div class="wrap">
+
+<header class="mast">
+  <div class="firm">Paper Study · 계열 4</div>
+  <div class="series">논문 정독 · 수요기반 국채 가격결정</div>
+  <h1>국채 수요의 부문별 탄력성 — 도구변수로 추정하고 QE·QT 효과로 환산하기</h1>
+  <p class="subtitle">Eren·Schrimpf·Xia(2026), <i>The Demand for Government Debt</i>를 한 절씩 원문 인용 + 한국어 옮김 + 해설로 정독합니다. 학부 기초 통계를 이수한 독자를 기준으로, 막히는 곳마다 사전지식을 그 자리에서 풀어 깔았습니다.</p>
+  <div class="metarow">
+    <div class="iso-row"><div class="k">원문</div><div class="v">BIS WP 1105 (2023.6 → 2025.12 개정) · Mgmt Sci AiA (2026.3.26 온라인)</div></div>
+    <div class="iso-row"><div class="k">저자</div><div class="v">E. Eren · A. Schrimpf(BIS·CEPR) · F. D. Xia(BIS)</div></div>
+    <div class="iso-row"><div class="k">데이터</div><div class="v">미 Flow of Funds 분기 보유 · 탄력성 추정 2004Q3–2024Q2(80분기)</div></div>
+    <div class="iso-row"><div class="k">게재 지위</div><div class="v">Management Science 게재 확정(forthcoming) · 동료심사 통과(에디터 L. Schmid, 익명 심사 2인)</div></div>
+    <div class="iso-row"><div class="k">저널 티어</div><div class="v">INFORMS 대표 저널 · FT50 · ABS(AJG) 4★ 최상위</div></div>
+    <div class="iso-row"><div class="k">피인용</div><div class="v">정확 수치 미확인 — BIS WP로 2023년부터 유통, 수요시스템 채권 문헌에서 표준 인용</div></div>
+    <div class="iso-row"><div class="k">저자 위상</div><div class="v">Xia는 Wu–Xia 섀도금리(§2.0의 그 Xia) 공저자 · Schrimpf는 BIS 통화·시장 선임</div></div>
+  </div>
+</header>
+
+<div class="with-layer-panel">
+<div class="content">
+
+<div class="summary">
+  <h2>이 노트의 요지</h2>
+  <p>이 논문은 한 가지 질문을 던집니다 — <b>중앙은행이 국채를 사거나 팔면 장기금리가 몇 bp(베이시스포인트, 1bp = 0.01%p) 움직이는가.</b> 기존 연구는 주로 정책 <b>발표일 전후 며칠</b>의 금리 변화(이벤트 스터디)로 답했지만, Eren·Schrimpf·Xia는 다른 길을 갑니다. 중앙은행이 시장에 남기는 것은 결국 "다른 투자자들이 흡수해야 할 국채 물량의 변화"이고, 그 물량 변화가 가격을 얼마나 움직이는지는 <b>각 부문이 가격에 얼마나 민감하게 반응하는가(수요 탄력성)</b>로 정해진다는 것입니다. 그래서 부문별 탄력성을 먼저 깨끗하게 추정하고, QE·QT를 그 위에 얹어 환산합니다.</p>
+  <p>결과는 셋입니다. 첫째, 은행과 투자펀드가 가장 탄력적이고 외국 공식부문(외국 중앙은행 등)은 가격에 거의 반응하지 않습니다. 둘째, 이 탄력성을 환산하면 <b>잔여 공급 1% 변화당 장기금리 약 8~13bp</b>입니다 — 주식·회사채·신흥국 국채보다 미국 국채 수요가 더 탄력적이라는 뜻입니다. 셋째, "QE는 효과가 크고 QT는 작다"는 비대칭은 투자자 <b>행동</b>의 차이가 아니라 그때그때 누가 시장에 있었는가, 곧 <b>시장 구성</b>의 차이에서 옵니다.</p>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px;">수식을 클릭하면 LaTeX가 복사됩니다. 오른쪽 패널은 지금 읽는 절의 핵심 식·수치·참조를 함께 보여 줍니다.</p>
+</div>
+
+<div class="note"><b>읽는 법.</b> 파란 박스(원문)는 논문의 영어 문장을 한 글자도 바꾸지 않고 옮긴 것이고, ▸ 줄이 한국어 옮김입니다. 그 아래 본문이 그 문장을 풀어 해설합니다. 지위 배지 <span class="chip">출판</span> 은 학술지 게재가 확정되어 판본이 고정되었다는 뜻입니다(아래 신상명세 참고).</div>
+
+<nav class="toc">
+  <h2>목차 — 논증을 따라가는 길</h2>
+  <div class="grp">문제와 사전지식</div>
+  <ul>
+    <li><a href="#s1">1. 이벤트 스터디의 한계와 ESX의 재구성</a></li>
+    <li><a href="#s2">2. 사전지식 — 수요기반 자산가격결정과 우하향 수요곡선</a></li>
+    <li><a href="#s3">3. 사전지식 — QE·QT의 작동과 '잔여 공급'</a></li>
+  </ul>
+  <div class="grp">데이터와 두 개의 질문</div>
+  <ul>
+    <li><a href="#s4">4. 데이터 — Flow of Funds 부문별 보유와 두 한계</a></li>
+    <li><a href="#s5">5. 회계의 절(§2) — 신규 부채 1달러를 누가 흡수했나</a></li>
+    <li><a href="#s6">6. 회계와 행동 — §2와 §3은 다른 질문</a></li>
+  </ul>
+  <div class="grp">모형과 식별</div>
+  <ul>
+    <li><a href="#s7">7. 수요 모형 — 로짓 수요와 추정식 (식 3~6)</a></li>
+    <li><a href="#s8">8. 식별 ① — 왜 OLS로는 기울기를 못 잡나</a></li>
+    <li><a href="#s9">9. 식별 ② — 통화정책 서프라이즈 도구변수와 약도구 검정</a></li>
+  </ul>
+  <div class="grp">결과</div>
+  <ul>
+    <li><a href="#s10">10. 결과 ① — 부문별 탄력성 순위</a></li>
+    <li><a href="#s11">11. 결과 ② — 가격탄력성과 8~13bp 환산 (식 7)</a></li>
+    <li><a href="#s12">12. 결과 ③ — QE&gt;QT는 행동이 아니라 시장 구성</a></li>
+    <li><a href="#s13">13. 결과 ④ — 반사실과 중국·걸프 시나리오</a></li>
+  </ul>
+  <div class="grp">확장과 평가</div>
+  <ul>
+    <li><a href="#s14">14. 국가 비교 — 영국의 우상향 수요와 길트 위기</a></li>
+    <li><a href="#s15">15. 비판적 읽기와 종합 · 셀프 체크</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================ s1 -->
+<h3 class="sec" id="s1"><span class="sn">1</span> 이 논문이 풀려는 문제 — 이벤트 스터디의 한계와 ESX의 재구성 <span class="chip">출판</span></h3>
+<p class="lead-q">중앙은행이 국채를 사면 장기금리가 내린다는 것은 누구나 압니다. 그런데 정확히 "얼마나" 내리는지를, 정책 발표일 며칠이 아니라 프로그램 전체 기간에 걸쳐 재려면 어떻게 해야 할까요?</p>
+
+<table class="tbl">
+  <thead><tr><th style="width:96px;">신상명세</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>지위</td><td><span class="chip">출판</span> <i>Management Science</i> 게재 확정(Articles in Advance, 2026.3.26 온라인, DOI 10.1287/mnsc.2025.00332, 권·호 미배정). 이 노트의 해부는 <b>BIS Working Paper 1105의 2025년 12월 개정판</b>(내지 날짜 2025.10.3)을 기준으로 합니다 — BIS 현행 PDF와 동봉 파일이 바이트 단위로 같고, 출판사 초록의 핵심 수치(8~13bp, QE/QT 비대칭)도 개정판과 일치합니다.</td></tr>
+    <tr><td>저자</td><td>Egemen Eren · Andreas Schrimpf(BIS·CEPR) · Fan Dora Xia(BIS). 셋 다 국제결제은행(BIS) 통화경제국 소속입니다. Xia는 계열 5 §2.0에서 다루는 Wu–Xia 섀도금리 모형의 그 Xia입니다.</td></tr>
+    <tr><td>유형</td><td>실증 논문입니다. 구조 균형모형을 새로 세우는 대신, 부문별 수요곡선을 도구변수로 추정하고 그 추정값을 가격효과로 환산합니다(이론모형은 Koijen–Yogo 수요시스템을 빌려 옵니다).</td></tr>
+    <tr><td>데이터</td><td>미국 Flow of Funds(Z.1 계정) 분기 보유 자료. 탄력성 추정 표본은 2004Q3–2024Q2(80분기), 회계 분해는 2001Q1부터(93분기). 일본·영국·유로 지역은 부록에서 비교합니다.</td></tr>
+    <tr><td>핵심 주장</td><td>부문마다 국채 수요의 가격 민감도가 크게 다르며(은행·투자펀드가 가장 탄력적, 외국 공식부문은 무반응), 이를 종합하면 잔여 공급 1%당 장기금리 8~13bp. "QE&gt;QT" 비대칭은 투자자 행동이 아니라 시기별 시장 구성의 차이에서 온다.</td></tr>
+  </tbody>
+</table>
+
+<p>논문의 출발점은 서론 첫 문단입니다. 왜 이 질문이 중요한지, 무엇이 아직 안 풀렸는지를 저자들의 문장으로 먼저 보겠습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Introduction (p.1)</div>
+  <p class="src-en">"As balance sheet normalization — or quantitative tightening (QT) – proceeds, the effects of these policies on government debt markets remain uncertain, largely due to a limited understanding of investor demand for government debt."</p>
+  <p class="src-ko">대차대조표 정상화, 곧 양적긴축(QT)이 진행되는 가운데, 이 정책들이 국채시장에 미치는 효과는 여전히 불확실하다. 그 까닭은 대체로 국채에 대한 투자자 수요를 우리가 잘 모르기 때문이다.</p>
+</blockquote>
+<p>이 한 문장에 논문의 문제의식이 다 들어 있습니다. 금융위기와 코로나를 거치며 주요 중앙은행들은 양적완화(QE)로 국채를 대량 매입해 장기금리를 끌어내렸습니다. 그 되돌림인 QT가 진행되는 지금, "금리가 얼마나 다시 오를까"를 묻는데, 정작 그 답의 열쇠인 <b>투자자 수요</b>를 우리가 정량적으로 모른다는 것입니다. 수요를 모른다는 말은 곧 <b>가격이 물량에 얼마나 민감한지(탄력성)를 모른다</b>는 말과 같습니다.</p>
+
+<h4 class="sub">기존 방법의 빈자리 — 발표일 창의 세 가지 약점</h4>
+<p>QE·QT의 효과를 재는 주류 방법은 <b>이벤트 스터디</b>였습니다. 정책 발표 직전과 직후(보통 며칠, 또는 발표 30분 창)의 금리 변화를 비교해 "이 발표가 금리를 몇 bp 움직였다"고 읽는 방식입니다. 깨끗하고 직관적이지만, 세 가지 빈자리가 있습니다.</p>
+<ul class="body">
+  <li><b>발표 효과만 잡고 이행 기간의 누적 효과를 놓칩니다.</b> 발표 당일 시장이 다 반영하지 못한 채, 실제 매입이 몇 달에 걸쳐 진행되며 금리를 더 누르는 부분은 짧은 창에 잡히지 않습니다.</li>
+  <li><b>신호 채널과 수급 채널이 섞입니다.</b> 발표일 금리 변화에는 "중앙은행이 물량을 흡수한다"는 수급 효과뿐 아니라 "앞으로 정책금리를 오래 낮게 두겠다"는 신호 효과가 함께 들어가, 둘을 가르기 어렵습니다.</li>
+  <li><b>예고가 길고 점진적인 QT에는 거의 무력합니다.</b> QT는 만기 상환 한도를 정해 천천히 진행되므로 "발표 충격"이라 할 사건 자체가 흐릿합니다.</li>
+</ul>
+<p>그래서 저자들은 질문을 분해합니다. 중앙은행이 시장에 남기는 것은 결국 <b>다른 투자자들이 흡수해야 할 잔여 공급의 변화</b>이고, 그 물량 변화가 가격을 얼마나 움직이는가는 부문별 수요곡선의 기울기가 정합니다. 그러니 탄력성을 먼저 깨끗하게 추정한 다음, QE·QT를 그 위에 얹어 환산하자는 것입니다. 이 야심을 저자들은 이렇게 못 박습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Introduction (p.1)</div>
+  <p class="src-en">"To our knowledge, ours is among the first studies to apply a demand-based asset pricing framework to major government debt markets, including the US Treasury market."</p>
+  <p class="src-ko">우리가 아는 한, 본 연구는 수요기반 자산가격결정 틀을 미국 국채시장을 포함한 주요 국채시장에 적용한 첫 연구군에 속한다.</p>
+</blockquote>
+<p>"수요기반 자산가격결정(demand-based asset pricing)"이 바로 다음 절에서 풀어 깔 핵심 사전지식입니다. 이 틀을 모르면 논문의 모든 식이 안갯속이므로, 먼저 그것부터 차근히 보겠습니다.</p>
+
+<!-- ============================================================ s2 -->
+<h3 class="sec" id="s2"><span class="sn">2</span> 사전지식 — 수요기반 자산가격결정과 우하향 수요곡선 <span class="chip">출판</span></h3>
+<p class="lead-q">교과서는 흔히 "채권가격은 미래 현금흐름의 현재가치로 정해진다"고 가르칩니다. 그런데 "누가 얼마나 사느냐"가 가격을 정한다는 관점은 무엇이 다를까요?</p>
+
+<h4 class="sub">두 세계관 — 무차익 가격결정 대 수요기반 가격결정</h4>
+<p>전통적인 자산가격 이론에는 가격을 정하는 주체로서의 "투자자 구성"이 없습니다. 채권가격은 미래 현금흐름을 위험조정 할인율로 할인한 값이고, 누가 그 채권을 들고 있든 가격은 같다고 봅니다. 차익거래가 모든 물량 불균형을 즉시 메우기 때문에, 자산의 수요곡선이 수평(완전탄력적)이라고 가정합니다. 물량이 조금 늘어도 가격은 꿈쩍 않는다는 뜻입니다.</p>
+<p><b>수요기반 자산가격결정</b>은 이 가정을 내려놓습니다. 현실의 투자자들은 규제·부채매칭·만기 선호 같은 제약에 묶여 있어서, 가격이 바뀌어도 곧바로 무한정 갈아타지 못합니다. 그래서 자산에도 보통의 재화처럼 <b>우하향 수요곡선</b>이 있습니다 — 가격이 비싸지면(수익률이 낮아지면) 덜 사고, 싸지면(수익률이 높아지면) 더 삽니다. 수요곡선이 수직에 가까울수록(비탄력적일수록), 같은 물량 충격에 가격이 더 크게 출렁입니다. 이 관점에서는 "누가 얼마나 탄력적으로 사느냐", 곧 <b>투자자 구성</b>이 가격을 좌우하는 핵심 변수가 됩니다.</p>
+<div class="note"><b>개념 — 자산에도 있는 우하향 수요곡선.</b> 사과는 비싸지면 덜 삽니다(우하향 수요). 채권도 마찬가지인데, 채권에서 "가격이 비싸진다"는 것은 곧 "수익률이 낮아진다"는 것입니다(가격과 수익률은 반대로 움직입니다). 그래서 채권 수요를 <i>수익률</i>로 그리면 우상향처럼 보이고("수익률이 오르면 더 산다"), <i>가격</i>으로 그리면 우하향입니다. 이 논문은 보유를 수익률에 회귀하므로 추정 계수의 부호는 양(+)이 정상(우하향 수요)입니다. 이 부호 약속을 처음부터 잡아 두면 뒤의 표가 헷갈리지 않습니다.</p></div>
+
+<h4 class="sub">Koijen–Yogo 수요시스템 — 포트폴리오 비중을 로짓으로 적는다</h4>
+<p>이 관점을 추정 가능한 통계 틀로 만든 것이 Koijen and Yogo(2019)의 <b>수요시스템(demand system)</b>입니다. 이 논문은 그 틀을 빌려 씁니다. 출발은 세 가지 가정입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.1 (p.13–14)</div>
+  <p class="src-en">"Taking a demand system approach to asset pricing, Koijen and Yogo (2019) derive weights of different assets in a portfolio based on three assumptions: (i) investor preferences are such that the optimal portfolio is a mean-variance portfolio, (ii) returns have a factor structure, (iii) and expected returns and factor loadings depend only on an asset's own prices and characteristics."</p>
+  <p class="src-ko">수요시스템 접근을 취하여, Koijen and Yogo(2019)는 세 가지 가정에 근거해 포트폴리오 내 여러 자산의 비중을 도출한다. (i) 투자자 선호가 최적 포트폴리오를 평균-분산 포트폴리오로 만들고, (ii) 수익률이 요인구조를 가지며, (iii) 기대수익률과 요인 적재가 오직 그 자산 자신의 가격과 특성에만 의존한다.</p>
+</blockquote>
+<p>세 가정을 한 줄씩 풀면 이렇습니다. (i) <b>평균-분산 포트폴리오</b>는 투자자가 기대수익은 높이고 위험(분산)은 낮추는 쪽으로 비중을 정한다는 표준 가정입니다(CARA 효용 + 정규 수익이면 정확히 이 형태가 나옵니다). (ii) <b>요인구조</b>는 자산 수익률이 소수의 공통 요인으로 설명된다는 가정이고, (iii) 마지막 가정은 한 자산의 매력도가 그 자산 자신의 가격·특성으로만 정해진다는 단순화입니다. 이 세 가정을 합치면, 한 자산의 포트폴리오 비중이 그 자산의 가격(채권이면 수익률)과 특성의 <b>로짓 함수</b>로 깔끔하게 정리됩니다. 구체적인 식 모양은 §7에서 기호 하나하나 풀겠습니다.</p>
+<p>지금 기억할 것은 하나입니다. 이 틀의 추정 목표는 단 하나의 숫자, <b>수익률에 대한 수요의 민감도</b>입니다. 그 숫자가 크면 그 부문은 탄력적(가격을 보고 적극 갈아탐)이고, 0에 가까우면 비탄력적(가격을 보지 않음)입니다. 논문 전체가 이 숫자를 부문마다 깨끗하게 뽑아내려는 시도입니다.</p>
+
+<!-- ============================================================ s3 -->
+<h3 class="sec" id="s3"><span class="sn">3</span> 사전지식 — QE·QT의 작동과 '잔여 공급'이라는 개념 <span class="chip">출판</span></h3>
+<p class="lead-q">중앙은행이 국채를 산다는 것은, 시장에 남은 다른 사람들 입장에서 무엇이 달라지는 일일까요?</p>
+
+<h4 class="sub">QE와 QT — 대차대조표로 장기금리를 누르고 되돌리기</h4>
+<p>정책금리(단기금리)를 0까지 내려도 경기가 살지 않을 때, 중앙은행은 <b>양적완화(QE)</b>로 장기 국채를 대량 매입합니다. 목적은 장기금리를 직접 끌어내려 기업·가계의 차입 비용을 낮추는 것입니다. 반대로 경기가 과열되거나 인플레이션이 높아지면, 보유 국채를 만기에 재투자하지 않고 줄여 나가는 <b>양적긴축(QT)</b>으로 대차대조표를 정상화합니다.</p>
+<p>여기서 핵심은 중앙은행이 국채를 사고팔면 <b>비중앙은행 투자자가 들고 있어야 할 물량</b>이 달라진다는 점입니다. 국채 발행 총량이 그대로라도, 중앙은행이 많이 사 두면 시장에 "남는" 물량이 줄고, 팔면 늘어납니다. 이 "시장에 남아 민간이 흡수해야 하는 물량"을 <b>잔여 공급(residual supply)</b>이라 부릅니다. QE는 잔여 공급을 줄이고, QT는 늘립니다.</p>
+<div class="note"><b>핵심 개념 — 잔여 공급.</b> 잔여 공급 = 국채 발행 총량 − 중앙은행 보유. 이 논문이 가격효과를 계산하는 단위는 바로 이 잔여 공급의 <i>퍼센트 변화</i>입니다. "QE가 잔여 공급을 1% 줄였다"를 "장기금리를 몇 bp 눌렀다"로 바꾸는 환산기가 곧 수요 탄력성입니다. 잔여 공급이 1% 줄 때 금리가 크게 내리면(탄력성이 작으면, 시장이 비탄력적이면) 그만큼 가격이 민감한 시장이라는 뜻입니다.</div>
+<p>이렇게 보면 QE·QT의 가격효과는 두 조각으로 분해됩니다 — <b>(1) 잔여 공급이 몇 % 변했나</b>(중앙은행 보유 변화에서 계산), 그리고 <b>(2) 잔여 공급 1%당 금리가 몇 bp 움직이나</b>(부문별 탄력성에서 계산). (1)은 관측되는 회계량이고, (2)가 이 논문이 도구변수로 추정하는 행동 모수입니다. 논문의 구조 전체가 이 (1)·(2) 분해를 따라갑니다.</p>
+
+<!-- ============================================================ s4 -->
+<h3 class="sec" id="s4"><span class="sn">4</span> 데이터 — Flow of Funds 부문별 보유와 두 한계 <span class="chip">출판</span></h3>
+<p class="lead-q">"누가 국채를 들고 있나"를 분기마다 추적하려면 어떤 자료를 쓰고, 그 자료에는 어떤 함정이 숨어 있을까요?</p>
+
+<p>미국 분석의 토대는 연준이 작성하는 <b>Flow of Funds(자금순환표, Z.1 계정)</b>입니다. 부문별로 국채를 얼마나 들고 있는지의 시계열을 분기마다 관측할 수 있습니다. 일본은 일본은행 자금순환표, 유로 지역은 ECB 데이터포털, 영국은 통계청(ONS)에서 같은 자료를 얻습니다. 이 자료는 부문별 보유를 빠짐없이 덮는다는 장점이 있지만, 저자들은 두 가지 한계를 명확히 밝힙니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §2.1 (p.7)</div>
+  <p class="src-en">"First, we only observe the holdings and not the maturity composition of holdings by sector. Second, total holdings correspond to market values and not face values. Therefore, changes in holdings might reflect in part valuation effects."</p>
+  <p class="src-ko">첫째, 우리는 부문별 보유 총액만 관측할 뿐 만기 구성은 관측하지 못한다. 둘째, 총보유는 액면가가 아니라 시장가치에 해당한다. 따라서 보유의 변화는 일부 평가 효과를 반영할 수 있다.</p>
+</blockquote>
+<p>두 한계를 풀면 이렇습니다. <b>한계 ① — 만기 구성이 안 보입니다.</b> "은행이 국채를 10억 달러 들고 있다"는 알지만 그 안에서 2년물이 얼마, 10년물이 얼마인지는 안 보입니다. 그래서 만기별로 다른 탄력성(예: §1.3 JLS가 한 것)은 이 자료로 못 합니다 — 이 논문이 부문은 다 덮되 만기는 못 쪼개는 것과, JLS가 만기는 쪼개되 표본이 짧은 것이 서로 거울처럼 맞물립니다.</p>
+<p><b>한계 ② — 보유가 시장가치입니다.</b> 이게 추정에 직접 위협이 됩니다. 한 부문이 국채를 한 주도 더 사거나 팔지 않았는데 금리가 내려 보유 채권의 시장가치가 올랐다고 합시다. 자료에는 "보유가 늘었다"로 찍힙니다. 그러면 "금리가 내렸는데(가격이 올랐는데) 보유가 늘었다"로 읽혀, 수요곡선이 거꾸로(우상향) 보이게 만드는 편향이 생깁니다. 저자들은 이 함정을 다음과 같이 정리합니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.2 각주 15 (p.17)</div>
+  <p class="src-en">"To see why, assume that holdings remain unchanged from quarter-to-quarter, but yields decline. This would amount to a positive valuation effect and in our data appear as an increase in holdings. This is likely to lead to a downward bias in our elasticity estimate, making the demand curve appear upward sloping with respect to prices."</p>
+  <p class="src-ko">왜 그런지 보려면, 분기 사이에 보유가 그대로인데 수익률만 내렸다고 하자. 이는 양(+)의 평가 효과가 되어 우리 자료에는 보유 증가로 나타난다. 이는 탄력성 추정에 하향 편향을 일으켜, 가격에 대해 수요곡선이 우상향하는 것처럼 보이게 한다.</p>
+</blockquote>
+<p>저자들은 추정 <i>전에</i> 이 평가 효과를 제거합니다. 각 부문 국채의 평균 <b>수정듀레이션을 8년</b>으로 가정하고(아래 식), 금리 변화에서 오는 가격 변동분만큼을 보유에서 빼낸 뒤, 그 "평가 조정 보유"를 종속변수로 씁니다.</p>
+<div class="eq" data-tex="\%\Delta\text{Price}_{8y}\;\approx\;-\,\Delta(\text{8y yield})\times \text{Modified Duration}"></div>
+<p>말풀이 — <span class="eqi" data-tex="\Delta(\text{8y yield})"></span>는 8년물 수익률의 변화(%p), <b>수정듀레이션(modified duration)</b>은 수익률이 1%p 변할 때 채권가격이 몇 % 변하는지를 재는 민감도입니다. 듀레이션 8이면 금리가 1%p 내릴 때 가격은 약 +8% 오릅니다(앞의 음부호가 "금리 하락 → 가격 상승"의 반대 방향을 담습니다). 이 가격 변동분에 부문의 총보유를 곱하면 "순수 평가 효과로 인한 보유 변화"가 나오고, 이를 빼낸 나머지가 진짜 매매로 인한 보유 변화입니다. 8이라는 값은 임의가 아니라 Tabova–Warnock(2022)이 행정자료로 보인 주요 투자자 듀레이션(7~8년)에 맞춘 것이고, 5나 10으로 바꿔도 결과가 질적으로 유지됨을 부록에서 확인합니다. 같은 평가 조정은 한국 데이터로 같은 작업을 할 때도 그대로 필요합니다.</p>
+
+<!-- ============================================================ s5 -->
+<h3 class="sec" id="s5"><span class="sn">5</span> 회계의 절(§2) — 신규 부채 1달러를 누가 몇 센트씩 흡수했나 <span class="chip">출판</span></h3>
+<p class="lead-q">탄력성을 추정하기 전에, 저자들은 더 단순한 질문부터 답합니다 — 정부가 빚을 1달러 더 낼 때, 그 1달러는 실제로 누구 주머니로 들어갔을까요?</p>
+
+<h4 class="sub">회계 분해식 — 합이 1이 되도록 강제된 흡수 몫</h4>
+<p>§2는 <b>회계 분해(accounting framework)</b>입니다. Fang et al.(2022)의 방법을 따라, 각 부문의 보유 변화를 국채 총량 변화에 회귀합니다. 한 시점·한 부문에 대한 기본식은 이렇습니다.</p>
+<div class="eq" data-tex="\frac{H^{s,j}_t-H^{s,j}_{t-1}}{D^{j}_{t-1}}=\alpha^{s,j}+\beta^{s,j}\,\frac{D^{j}_t-D^{j}_{t-1}}{D^{j}_{t-1}}+\varepsilon^{s,j}_t"></div>
+<p>말풀이 — <span class="eqi" data-tex="H^{s,j}_t"></span>는 시점 <span class="eqi" data-tex="t"></span>에 국가 <span class="eqi" data-tex="j"></span>의 부문 <span class="eqi" data-tex="s"></span>가 든 국채, <span class="eqi" data-tex="D^{j}_t"></span>는 국가 <span class="eqi" data-tex="j"></span>의 국채 총발행. 좌변은 "부문 <span class="eqi" data-tex="s"></span>의 보유가 (직전 총량 대비) 몇 % 늘었나"이고, 우변의 설명변수는 "국채 총량이 몇 % 늘었나"입니다. 기울기 <span class="eqi" data-tex="\beta^{s,j}"></span>가 핵심으로, <b>국채가 1단위 늘 때 부문 <span class="eqi" data-tex="s"></span>가 그중 몇 단위를 떠안았나</b>, 곧 한계 흡수 몫입니다. 절편 <span class="eqi" data-tex="\alpha^{s,j}"></span>는 총량과 무관한 부문 고유의 추세적 증감, <span class="eqi" data-tex="\varepsilon^{s,j}_t"></span>는 잔차입니다. 모든 부문의 보유를 합치면 곧 국채 총량이므로, 분해는 항등적으로 다음을 만족합니다.</p>
+<div class="eq" data-tex="\sum_{s}\beta^{s,j}=1"></div>
+<p>여기서 <span class="eqi" data-tex="\sum_{s}\beta^{s,j}"></span>는 모든 부문의 한계 흡수 몫을 더한 값이고, 그것이 1(=100%)이라는 항등식입니다. 이 합산 제약이 회계 분해의 성격을 못 박습니다 — <b>이 <span class="eqi" data-tex="\beta"></span>는 행동이 아니라 회계입니다.</b> "신규 부채 1달러를 100센트로 쪼개 누구에게 얼마씩 배분했나"를 더해 1(=100%)이 되도록 강제한 항등적 분해일 뿐, 가격을 보고 반응한 결과가 아닙니다. 어떤 부문의 계수가 음수면 그 부문은 그 시기에 순매도자(다른 부문에 팔아넘긴 쪽)였다는 뜻입니다. 시기별 흡수 양상을 보려고 저자들은 시기 더미를 상호작용시킨 확장식을 씁니다.</p>
+<div class="eq" data-tex="\frac{H^{s}_t-H^{s}_{t-1}}{D_{t-1}}=\alpha^{s}+\beta^{s\prime}\iota_t\times\frac{D_t-D_{t-1}}{D_{t-1}}+\varepsilon^{s}_t"></div>
+<p>말풀이 — <span class="eqi" data-tex="\iota_t"></span>는 시기 더미 벡터로, 그 분기가 어느 국면(Pre-GFC·Post-GFC·QT1·Covid·QT2)에 속하면 1, 아니면 0입니다. 프라임 <span class="eqi" data-tex="\beta^{s\prime}"></span>은 전치(벡터 내적)로, 시기별 흡수 몫 <span class="eqi" data-tex="(\beta^{s}_{\text{Pre-GFC}},\dots,\beta^{s}_{\text{QT2}})"></span>를 한 줄에 담았다는 표시입니다. 곧 "국면마다 부문 <span class="eqi" data-tex="s"></span>의 흡수 몫을 따로 추정"하는 식이고, 각 국면에서 부문 합은 여전히 1입니다.</p>
+
+<h4 class="sub">시기별 흡수 양상 — 그 자체로 이야기인 표</h4>
+<p>추정 결과(논문 Table 1)는 시기마다 흡수 주체가 갈아드는 모습을 보여 줍니다. 1달러 신규 부채당 흡수 센트로 읽습니다.</p>
+<table class="tbl">
+  <thead><tr><th>국면</th><th>흡수의 주역(1달러당 센트)</th><th>읽는 법</th></tr></thead>
+  <tbody>
+    <tr><td><b>Pre-GFC</b><br>2001Q1–2008Q4</td><td>외국 공식 31¢ · 가계 26¢ · MMF 21¢ · 외국 민간 9¢</td><td>위기 전엔 외국 중앙은행(외국 공식)이 미국 부채의 최대 흡수자. "글로벌 저축 과잉"의 시대상.</td></tr>
+    <tr><td><b>Post-GFC→QT1</b><br>QE 도입 이후</td><td>중앙은행 0→19¢ · 투자펀드 1→8¢ · 은행 0→6¢</td><td>QE로 연준이 본격 흡수자로 등장. 동시에 규제로 은행이, 자금유입으로 펀드가 비중을 키움.</td></tr>
+    <tr><td><b>QT1</b><br>2017Q4–2019Q4</td><td>가계(≈헤지펀드) 33¢ · MMF 26¢ · 외국 민간 17¢ · 은행 10¢ · 투자펀드 8¢ · 연기금 4¢</td><td>연준이 매입을 멈추자, 신규 부채를 가계(주로 헤지펀드)와 MMF가 떠안음.</td></tr>
+    <tr><td><b>Covid</b><br>2020Q1–2022Q2</td><td>중앙은행 + MMF가 합쳐 84% 흡수(연준 Covid 계수 0.51)</td><td>팬데믹 대응 QE의 압도적 규모 — 두 부문이 신규 부채의 대부분을 소화.</td></tr>
+    <tr><td><b>QT2</b><br>2022Q3–2024Q2</td><td>가계(≈헤지펀드) · 외국 민간 · MMF · 투자펀드가 주로 흡수, 이번엔 은행 역할 축소</td><td>QT1과 비슷하게 헤지펀드가 흡수의 중심. 단 은행은 빠짐.</td></tr>
+  </tbody>
+</table>
+<p>여기서 평균 보유 비중의 한 변화가 뒤의 결과를 미리 비춥니다 — <b>외국 공식부문의 비중이 Post-GFC의 약 33%에서 QT2의 16.4%로 반 토막</b> 났습니다. 가격에 둔감한(비탄력적인) 이 부문이 줄었다는 것은, 시장 전체가 점점 더 탄력적으로 바뀌었다는 뜻입니다. 이 구성 변화가 §12의 "QE&gt;QT 비대칭"의 진짜 원인이 됩니다.</p>
+<div class="warn"><b>가계 ≈ 헤지펀드.</b> 미국 Flow of Funds의 "가계(household)"는 다른 부문에 안 잡히는 것을 모두 담는 <i>잔여 항목</i>이라, 실제로는 헤지펀드를 주로 가리킵니다(Vissing-Jorgensen, 2021). QT 국면에서 가계가 국채를 대거 흡수한 것은, 헤지펀드가 현물-선물 베이시스 차익거래를 위해 국채를 사들였기 때문입니다(Schrimpf et al., 2020; Barth–Kahn, 2021). 이 사실은 §6에서 "많이 샀다 ≠ 가격에 탄력적이다"를 가르는 결정적 단서가 됩니다.</div>
+
+<!-- ============================================================ s6 -->
+<h3 class="sec" id="s6"><span class="sn">6</span> 회계와 행동 — §2와 §3은 서로 다른 질문 <span class="chip">출판</span></h3>
+<p class="lead-q">"가계가 QT 때 국채를 가장 많이 샀다"는 §2의 사실과, "가계의 가격 탄력성은 거의 0"이라는 §3의 결론. 이 둘은 모순일까요?</p>
+
+<p>이 절은 새 식이나 새 데이터가 없습니다. 그런데도 따로 떼어 두는 이유는, 논문의 뼈대이면서 동시에 가장 흔한 오독 지점이기 때문입니다. <b>§2와 §3은 같은 글자 <span class="eqi" data-tex="\beta"></span>를 쓰지만 완전히 다른 것을 잽니다.</b></p>
+<table class="tbl">
+  <thead><tr><th style="width:130px;">구분</th><th>§2 회계 분해의 β</th><th>§3 수요 추정의 β₁</th></tr></thead>
+  <tbody>
+    <tr><td><b>재는 것</b></td><td>회계적 흡수 몫 — 가격이 어떻든 누가 그 물량을 받아 갔나</td><td>가격(금리)에 대한 반응 기울기 — 가격이 변하면 보유를 얼마나 바꾸나</td></tr>
+    <tr><td><b>질문</b></td><td>"누가 흡수했나"</td><td>"누가 가격에 반응하나"</td></tr>
+    <tr><td><b>제약</b></td><td>부문 합 = 1 (항등식)</td><td>합산 제약 없음 (행동 모수)</td></tr>
+    <tr><td><b>가계(헤지펀드)</b></td><td>QT 때 큰 흡수자 (33¢)</td><td>탄력성 ≈ 0 (가격 무반응)</td></tr>
+  </tbody>
+</table>
+<p>그래서 §2와 §3은 모순이 아닙니다. 헤지펀드는 QT 때 국채를 많이 샀지만, 그것은 <b>8년물 금리 수준에 반응한 것이 아니라</b> 현물-선물 베이시스라는 <i>별개의 신호</i>에 반응한 것입니다. 수요 모형의 언어로는, 가격(수익률)에 반응한 부분이 아니라 식으로 설명되지 않는 <b>잠재수요(latent demand)</b> <span class="eqi" data-tex="\eta"></span>의 움직임입니다. "많이 샀다"와 "가격에 탄력적이다"는 독립적인 진술이고, 이 둘을 섞으면 §2의 흡수 표를 §3의 탄력성처럼 인용하는 사고가 납니다.</p>
+<p>이 구분은 추정 설계에도 흔적을 남깁니다. 저자들은 헤지펀드(가계)·딜러처럼 발표 창 안에서 빠르게 움직이는 부문을 <b>탄력성 추정에서 아예 제외</b>합니다(이유는 §9에서). 대신 이들을 가격에 무반응(비탄력)이라 <i>가정</i>하고 집계 효과를 계산하는데, 이 가정이 집계 효과를 <b>상한 추정</b>으로 만든다는 점을 저자들 스스로 밝힙니다 — 만약 이들이 실은 우하향 수요(탄력적)였다면 진짜 가격효과는 보고치보다 작아야 하기 때문입니다.</p>
+
+<!-- ============================================================ s7 -->
+<h3 class="sec" id="s7"><span class="sn">7</span> 수요 모형 — 로짓 수요와 추정식 (식 3~6) <span class="chip">출판</span></h3>
+<p class="lead-q">§2의 직관을 이제 추정 가능한 식으로 바꿉니다. 로짓 수요가 어떻게 로그-선형 회귀식으로 펴지는지, 기호 하나하나 따라가 봅시다.</p>
+
+<h4 class="sub">식 3 — 로짓 수요함수</h4>
+<p>Koijen–Yogo 틀에서 한 부문의 포트폴리오 비중은 그 자산의 가격(채권이면 수익률)과 특성의 로짓 함수로 적힙니다.</p>
+<div class="eq" data-tex="\delta^{s}_t=\exp\!\big(\alpha^{s}+\beta^{s}_1 Y_t+\beta^{s\prime}_2 X_t\big)\,\epsilon^{s}_t"></div>
+<p>말풀이 — <span class="eqi" data-tex="\delta^{s}_t\equiv H^{s}_t/H^{(0)s}_t"></span>는 부문 <span class="eqi" data-tex="s"></span>가 <b>관심 자산(국채, inside asset)</b>을 든 양 <span class="eqi" data-tex="H^{s}_t"></span>를, 그 부문이 <b>바깥 자산(outside asset)</b>을 든 양 <span class="eqi" data-tex="H^{(0)s}_t"></span>로 나눈 비율입니다. <span class="eqi" data-tex="Y_t"></span>는 국채 수익률, <span class="eqi" data-tex="\beta^{s}_1"></span>이 <b>이 논문의 주인공</b> — 수익률에 대한 수요의 민감도입니다. <span class="eqi" data-tex="X_t"></span>는 자산 특성 벡터, <span class="eqi" data-tex="\beta^{s\prime}_2"></span>은 그에 대한 민감도(프라임은 벡터 내적)입니다. <span class="eqi" data-tex="\epsilon^{s}_t"></span>는 <b>잠재수요(latent demand)</b>로, 연구자가 관측하지 못하는 요인(부문별 믿음·위험회피 차이 등)을 담고, 그 로그 <span class="eqi" data-tex="\eta^{s}_t\equiv\log(\epsilon^{s}_t)"></span>가 정규분포를 따른다고 둡니다.</p>
+<div class="note"><b>개념 — 바깥 자산(outside asset)이 왜 필요한가.</b> 로짓 수요에서 "이 자산을 얼마나 들까"는 늘 "대신 무엇을 들 수 있나"와의 비교입니다. 그 "대안 전체"를 한 덩어리로 묶은 것이 바깥 자산입니다. 정의상 바깥 자산은 "모든 관심 자산의 가격이 오르면 투자자가 더 들고 싶어 하는 자산"입니다. 문제는 한 부문의 포트폴리오 전체를 들여다볼 수 없어 바깥 자산이 대개 관측되지 않는다는 점입니다. 그래서 두 가지 길이 갈립니다(식 5·6).</div>
+
+<h4 class="sub">식 4~6 — 항등식에서 두 갈래 추정식으로</h4>
+<p>바깥 자산을 관측할 수 있다면 단순한 항등식이 성립합니다.</p>
+<div class="eq" data-tex="\log(H^{s}_t)=\log(\delta^{s}_t)+\log(H^{(0)s}_t)"></div>
+<p>식 3의 양변에 로그를 취하면 <span class="eqi" data-tex="\log(\delta^{s}_t)=\alpha^{s}+\beta^{s}_1 Y_t+\beta^{s\prime}_2 X_t+\eta^{s}_t"></span>이고(지수와 로그가 상쇄, 곱하기 <span class="eqi" data-tex="\epsilon"></span>는 로그에서 더하기 <span class="eqi" data-tex="\eta"></span>로 바뀜), 이를 위 항등식에 넣으면 깔끔한 선형식이 나옵니다.</p>
+<div class="eq" data-tex="\log(H^{s}_t)-\log(H^{(0)s}_t)=\alpha^{s}+\beta^{s}_1 Y_t+\beta^{s\prime}_2 X_t+\eta^{s}_t"></div>
+<p>좌변이 "관심 자산 보유 ÷ 바깥 자산 보유"의 로그라, 바깥 자산을 알면 좌변을 직접 만들 수 있습니다. 그런데 대부분의 경우 바깥 자산이 관측되지 않으므로, 선행연구처럼 바깥 자산을 모수적으로 모형화합니다 — <span class="eqi" data-tex="\log(H^{(0)s}_t)=\phi^{s}+\gamma^{s\prime}W_t"></span>로 두는 것입니다. 이를 합쳐 모든 부문에 적용하는 <b>기준 추정식(식 5)</b>이 나옵니다.</p>
+<div class="eq" data-tex="\log(H^{s}_t)=(\alpha^{s}+\phi^{s})+\beta^{s}_1 Y^{8}_t+\beta^{s\prime}_2 X_t+\gamma^{s\prime}W_t+t+t^{2}+\eta^{s}_t"></div>
+<p>말풀이 — <span class="eqi" data-tex="Y^{8}_t"></span>는 <b>8년물 무이표채 수익률</b>입니다(만기 선택은 주요 투자자의 평균 듀레이션 7~8년에 맞춤). <span class="eqi" data-tex="W_t"></span>는 바깥 자산 보유에 영향을 주는 요인 벡터(기준 설정에서 독일 5년물 금리 + 로그 VIX), <span class="eqi" data-tex="\gamma^{s\prime}"></span>은 그 민감도입니다. <span class="eqi" data-tex="t+t^{2}"></span>는 <b>2차 추세항</b>으로, 보유의 장기 추세를 흡수해 추세에서 벗어난 변동만으로 식별을 얻기 위함입니다(추세를 빼야 "금리 변화에 대한 단기 반응"만 남습니다). <span class="eqi" data-tex="X_t"></span>(자산 특성)에는 로그 GDP·GDP 성장률·근원 인플레이션·광의 달러지수(로그)가 들어가는데, 달러지수는 미국 국채의 <b>편의수익률(convenience yield)</b>을 간명하게 통제하려는 대리변수입니다.</p>
+<p>한편 바깥 자산을 부분적으로 관측할 수 있는 부문(Flow of Funds에 국채 외 채권 보유가 잡히는 부문)에는, 그 정보를 직접 써서 좌변을 만든 <b>식 6</b>을 함께 추정해 강건성을 확인합니다.</p>
+<div class="eq" data-tex="\log(H^{s}_t)-\log(H^{(0)s}_t)=\alpha^{s}+\beta^{s}_1 Y^{8}_t+\beta^{s\prime}_2 X_t+t+t^{2}+\eta^{s}_t"></div>
+<p>여기서 바깥 자산 <span class="eqi" data-tex="H^{(0)s}_t"></span>는 "국채를 뺀 총채권 보유"로 잡았습니다. 외국 공식·외국 민간처럼 총자산 정보가 빠진 부문은 식 6을 못 쓰고 식 5만 씁니다. 두 식의 결과는 대체로 비슷합니다(§10의 표에서 두 패널을 나란히 봅니다). 어느 식이든 추정 목표는 단 하나, 부문별 <span class="eqi" data-tex="\beta^{s}_1"></span>입니다 — <b>8년물 금리가 1%p 오를 때 그 부문이 보유를 몇 % 늘리나</b>.</p>
+
+<!-- ============================================================ s8 -->
+<h3 class="sec" id="s8"><span class="sn">8</span> 식별 ① — 왜 OLS로는 수요곡선의 기울기를 못 잡나 <span class="chip">출판</span></h3>
+<p class="lead-q">식 5를 그냥 최소자승(OLS)으로 돌리면 안 될까요? 안 됩니다. 그 이유가 이 논문에서 가장 중요한 통계적 길목입니다.</p>
+
+<h4 class="sub">동시성·내생성 — 수요곡선과 잠재수요가 같이 움직인다</h4>
+<p>수요곡선을 추정할 때 늘 걸리는 함정이 있습니다. 우리가 보는 것은 가격(수익률)과 수량(보유)이 함께 움직인 <b>균형점들</b>뿐인데, 그 움직임이 "수요곡선을 <i>따라</i> 미끄러진 것"인지 "수요곡선 <i>자체가</i> 통째로 이동한 것"인지 구별이 안 됩니다. 식 5의 언어로는, 잠재수요 <span class="eqi" data-tex="\eta^{s}_t"></span>(관측 안 되는 수요 충격)가 보유 <span class="eqi" data-tex="H^{s}_t"></span>와 수익률 <span class="eqi" data-tex="Y^{8}_t"></span>를 동시에 움직입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.1 (p.14)</div>
+  <p class="src-en">"First, the latent demand is jointly endogenous with asset prices, and hence estimates using OLS would yield biased and inconsistent estimates. Therefore, a valid instrument is needed to consistently estimate the main parameters of interest, β₁ˢ."</p>
+  <p class="src-ko">첫째, 잠재수요는 자산가격과 함께 내생적이며, 따라서 OLS 추정치는 편향되고 일치성이 없다. 그러므로 주요 관심 모수 β₁ˢ을 일치성 있게 추정하려면 유효한 도구변수가 필요하다.</p>
+</blockquote>
+<p>구체적으로 따라가 봅시다. 어떤 분기에 한 부문의 잠재수요가 커져(예: 안전자산 선호가 갑자기 강해져) 국채를 더 샀다고 합시다. 그 매수가 국채가격을 밀어 올리고 수익률을 끌어내립니다. 자료에는 "수익률이 내렸는데 보유가 늘었다"가 찍힙니다. 회귀는 이를 "가격이 올라도 더 사네"로 읽어, 진짜 우하향 수요(금리↑→보유↑, 즉 양의 <span class="eqi" data-tex="\beta_1"></span>)를 실제보다 <b>작게</b>(심하면 음수로) 추정합니다. 이것이 잠재수요와 수익률의 양의 상관에서 오는 <b>동시성 편향</b>입니다. 부호의 방향은 §4에서 본 시장가치 평가 편향과 같은 쪽(우상향처럼 보이게)이라, 두 편향이 겹칩니다 — 그래서 평가 조정과 도구변수가 둘 다 필요합니다.</p>
+<div class="note"><b>교과서 한 줄 — 누락·동시성 편향의 plim.</b> 설명변수(수익률)가 오차(잠재수요)와 상관되면, OLS 추정량은 참값으로 수렴하지 않고 <span class="eqi" data-tex="\text{plim}\,\hat\beta_1=\beta_1+\dfrac{\operatorname{Cov}(Y,\eta)}{\operatorname{Var}(Y)}"></span>로 치우칩니다. 잠재수요가 수익률을 끌어내려 <span class="eqi" data-tex="\operatorname{Cov}(Y,\eta)<0"></span>이면 둘째 항이 음(−)이 되어 <span class="eqi" data-tex="\hat\beta_1"></span>이 0 쪽으로 끌려 내려갑니다. 도구변수는 이 둘째 항을 0으로 만들어 주는 장치입니다.</div>
+
+<!-- ============================================================ s9 -->
+<h3 class="sec" id="s9"><span class="sn">9</span> 식별 ② — 통화정책 서프라이즈를 도구변수로, 그리고 약도구 검정 <span class="chip">출판</span></h3>
+<p class="lead-q">잠재수요와는 안 닿으면서(외생성) 수익률은 확실히 움직이는(관련성) 변수가 필요합니다. 저자들은 그것을 어디서 찾았을까요?</p>
+
+<h4 class="sub">도구변수의 발상 — 느린 투자자는 30분 창의 가격을 만들 수 없다</h4>
+<p>도구변수(IV)는 두 조건을 만족해야 합니다 — <b>관련성</b>(내생변수인 수익률을 실제로 움직인다)과 <b>외생성</b>(오차인 잠재수요와는 직접 닿지 않는다, 곧 배제 제약). 저자들이 고른 도구는 <b>고빈도 통화정책 서프라이즈</b>입니다 — 정책 발표 직전·직후의 매우 짧은 창(1~2시간 미만) 안의 금리 변화에서 추출한, 시장이 예상하지 못한 정책 충격입니다.</p>
+<p>외생성 논거의 핵심은 "시간 규모의 분리"입니다. 이 논문이 탄력성을 재려는 주요 부문들(외국 중앙은행·은행·뮤추얼펀드·연기금·보험)은 포트폴리오를 천천히 조정하는 <b>느린 투자자(slow-moving)</b>라, 발표 후 30분 창의 가격 변화를 만들어 낼 수 없습니다. 따라서 그 짧은 창의 금리 변화는 이들의 잠재수요와 직접 닿지 않습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Introduction (p.2)</div>
+  <p class="src-en">"Since the main investor sectors we analyze – commercial banks, asset managers, pension funds, and insurance companies – adjust their portfolios at lower frequencies, they are unlikely to drive these high-frequency market responses, which is important for the exogeneity of the instrument."</p>
+  <p class="src-ko">우리가 분석하는 주요 투자자 부문 — 상업은행, 자산운용사, 연기금, 보험회사 — 은 더 낮은 빈도로 포트폴리오를 조정하므로, 이러한 고빈도 시장 반응을 일으킬 가능성이 낮다. 이것이 도구의 외생성에 중요하다.</p>
+</blockquote>
+<p>바로 이 논거가 §6에서 본 "제외" 설계와 맞물립니다 — 헤지펀드·딜러처럼 발표 창 안에서 빠르게 거래하는 부문은 이 외생성 논거가 깨지므로(이들은 정말로 그 창의 가격을 만들 수 있음), 탄력성 추정에서 빼고 비탄력으로 가정합니다.</p>
+
+<h4 class="sub">세 가지 식별 위협과 그 대응</h4>
+<p>저자들은 배제 제약을 위협할 수 있는 세 가지 경우를 차례로 짚고 막습니다.</p>
+<ul class="body">
+  <li><b>동시성.</b> 혹시 우리가 재려는 그 투자자들이 발표 창의 가격을 만든 게 아닐까? → 느린 투자자라 그럴 수 없고, 빠른 부문은 추정에서 제외했으므로 해소.</li>
+  <li><b>정보 효과(central bank information effect).</b> 통화정책 서프라이즈가 사실은 "중앙은행이 흘린 경기 정보"라면, 보유가 금리가 아니라 그 정보에 직접 반응해 배제 제약이 깨집니다. → <b>정보 충격과 상관이 가장 낮은</b> 서프라이즈를 도구로 고르고, 강건성 점검에서는 정보 충격에 직교화(orthogonalize)한 잔차를 도구로 씁니다.</li>
+  <li><b>역방향 고려.</b> 중앙은행이 부문별 수요를 보고 일부러 시장을 놀라게 한다면? → 중앙은행의 강령은 인플레이션·산출 안정에 맞춰 정책을 정하므로 가능성이 낮다고 봅니다. 또한 모든 통제변수를 한 분기 시차로 넣어, 서프라이즈가 통제변수를 통해 보유에 새는 통로도 막습니다.</li>
+</ul>
+
+<h4 class="sub">약도구 문제와 1단계 F — PCA로 47까지</h4>
+<p>고빈도 식별은 깨끗하지만 대가가 있습니다. 발표 창의 금리 변화 효과가 워낙 작아서(몇 bp 수준), 도구가 약할 수 있습니다. 여기서 <b>약도구(weak instrument)</b>가 무엇이고 왜 위험한지를 먼저 깔겠습니다.</p>
+<div class="note"><b>통계 개념 — 1단계 F와 약도구.</b> 2단계 최소자승(2SLS)의 1단계는 내생변수(8년물 수익률)를 도구와 외생통제에 회귀하는 단계입니다. <b>1단계 F</b>는 그 회귀에서 도구가 내생변수를 얼마나 강하게 설명하는지(관련성)를 재는 값입니다. 도구가 약하면(F가 작으면), 외생성이 완벽해도 2SLS 추정이 OLS의 내생성 편향 쪽으로 되돌아가고 표준오차·신뢰구간이 신뢰할 수 없게 됩니다. 검정의 귀무가설은 "도구가 약하다"이고, F가 임계값을 넘으면 그 가설을 기각합니다 — 곧 "약하지 않다"고 말할 수 있습니다.</div>
+<p>저자들은 한 측정치에 미리 기대지 않고, 문헌의 다섯 가지 통화정책 서프라이즈(Swanson 2021, Bu–Rogers–Wu 2021, Kearns–Schrimpf–Xia 2022, Jarociński–Karadi 2020, Nakamura–Steinsson 2018)를 모아 <b>주성분분석(PCA)</b>으로 합칩니다. 그리고 세 기준 — ① 강한 1단계, ② 최근 표본(QT2까지 가용), ③ 정보 충격과 낮은 상관 — 을 동시에 만족하는 것을 도구로 고릅니다. 1단계 결과(논문 Table 2)를 핵심만 옮기면 이렇습니다.</p>
+<table class="tbl">
+  <thead><tr><th>도구 후보</th><th class="num">유효 F</th><th class="num">임계값</th><th>판정</th></tr></thead>
+  <tbody>
+    <tr><td>Swanson FFR (개별)</td><td class="num">4.84</td><td class="num">15.15</td><td>약함</td></tr>
+    <tr><td>Bu–Rogers–Wu (개별)</td><td class="num">4.46</td><td class="num">23.11</td><td>약함</td></tr>
+    <tr><td>Kearns–Schrimpf–Xia (개별)</td><td class="num">8.33</td><td class="num">18.68</td><td>약함</td></tr>
+    <tr><td>Jarociński–Karadi MP (개별)</td><td class="num">13.71</td><td class="num">23.11</td><td>약함</td></tr>
+    <tr><td>Nakamura–Steinsson (개별)</td><td class="num">45.60</td><td class="num">23.11</td><td>강하나 표본 짧고 정보상관 30%</td></tr>
+    <tr><td><b>PCA 1 (JK·BRW·KSX) — 기준 도구</b></td><td class="num"><b>47.01</b></td><td class="num">23.11</td><td><b>강함 · 정보상관 8%</b></td></tr>
+  </tbody>
+</table>
+<p>읽는 법 — 개별 시리즈는 거의 다 F가 임계값에 못 미쳐(4~14) "약하다"는 가설을 기각하지 못합니다. 반면 세 시리즈를 합친 <b>제1주성분의 유효 F는 47.01</b>로 임계값 23.11을 훌쩍 넘어 약도구 가설을 기각하고, 동시에 정보 충격과의 상관이 8%로 가장 낮습니다(NS는 F는 높지만 정보상관이 30%이고 표본이 짧음). 그래서 이 PCA를 기준 도구로 삼습니다. 한 가지 정직한 단서 — 여기 임계값은 생성된 도구·HAC 표준오차 환경에 맞춘 Olea–Pflueger(2013)의 유효 F 임계값입니다(표준 교과서의 "10"이 아닙니다). 또한 이 도구는 곡선의 장기 끝에서 반응을 재는 충격에 강하게 적재되어, "대차대조표 정책이 공급을 바꾸는" 경로와 직접 닿아 있음을 부록에서 보입니다.</p>
+<p>다만 과소식별 검정의 p값이 0.06~0.13으로 통과는 하되 넉넉하지는 않습니다(§15에서 다시). 식별이 "작동하지만 압도적이지는 않다"가 공정한 평입니다.</p>
+
+<!-- ============================================================ s10 -->
+<h3 class="sec" id="s10"><span class="sn">10</span> 결과 ① — 부문별 탄력성 순위: 은행·투자펀드가 가장 탄력적, 외국 공식은 무반응 <span class="chip">출판</span></h3>
+<p class="lead-q">이제 2단계 결과를 봅니다. 어느 부문이 가격을 보고 적극 갈아타고, 어느 부문이 가격을 아예 보지 않을까요?</p>
+
+<p>2단계는 1단계에서 예측한 수익률(외생적 부분)로 수익률을 대체해 <span class="eqi" data-tex="\beta^{s}_1"></span>을 일치성 있게 추정합니다. 추정치가 클수록 그 부문 수요가 금리 변화에 더 민감하다는 뜻입니다. 부호는 양(+)이 정상(우하향 수요)임을 다시 떠올립시다. 식 5 기준 결과(논문 Table 4 Panel a)는 다음과 같습니다.</p>
+<table class="tbl">
+  <thead><tr><th>부문</th><th class="num">β₁ (%/1%p)</th><th>유의성</th><th>읽는 법</th></tr></thead>
+  <tbody>
+    <tr><td><b>상업은행</b></td><td class="num"><b>32.76</b></td><td>***</td><td>가장 탄력적. 규제 유동성 수요 위에서도 금리(가격)에 강하게 반응해 매매.</td></tr>
+    <tr><td><b>투자펀드</b></td><td class="num"><b>22.04</b></td><td>***</td><td>두 번째. 단 내부를 가르면 개방형 뮤추얼펀드가 끌고 ETF는 무반응(지수 추종).</td></tr>
+    <tr><td>외국 민간</td><td class="num">19.31</td><td>*</td><td>탄력적이되 정밀도가 낮음(유의수준 10%).</td></tr>
+    <tr><td>보험회사</td><td class="num">12.42</td><td>***</td><td>중간. 부채 매칭 수요가 가격 감응을 일부 제한.</td></tr>
+    <tr><td>연기금</td><td class="num">10.85</td><td>*</td><td>중간. 역시 부채 매칭의 제약.</td></tr>
+    <tr><td><b>외국 공식</b>(외국 중앙은행 등)</td><td class="num"><b>1.53</b></td><td>비유의</td><td>거의 수직인 수요. 준비금 운용은 안전성·유동성 동기라 가격을 보지 않음.</td></tr>
+    <tr><td>주·지방정부</td><td class="num">1.51</td><td>비유의</td><td>역시 가격 무반응.</td></tr>
+  </tbody>
+</table>
+
+<figure>
+  <div class="fig">
+    <div class="figtag">도표 1 · 부문별 수익률 탄력성 β₁ (식 5, 미국, 2004Q3–2024Q2)</div>
+    <svg viewBox="0 0 640 300" role="img" aria-label="부문별 수익률 탄력성 막대그래프">
+      <!-- y axis -->
+      <line x1="140" y1="34" x2="140" y2="272" stroke="#0A0A0A" stroke-width="1.5"/>
+      <!-- x gridlines at 0,10,20,30 ; scale 13.142857 px/unit from x=140 -->
+      <line x1="271.4" y1="34" x2="271.4" y2="272" stroke="#ECECEC" stroke-width="1"/>
+      <line x1="402.9" y1="34" x2="402.9" y2="272" stroke="#ECECEC" stroke-width="1"/>
+      <line x1="534.3" y1="34" x2="534.3" y2="272" stroke="#ECECEC" stroke-width="1"/>
+      <text x="140" y="287" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6E6E6E" text-anchor="middle">0</text>
+      <text x="271.4" y="287" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6E6E6E" text-anchor="middle">10</text>
+      <text x="402.9" y="287" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6E6E6E" text-anchor="middle">20</text>
+      <text x="534.3" y="287" font-family="IBM Plex Mono,monospace" font-size="9" fill="#6E6E6E" text-anchor="middle">30</text>
+      <!-- bars -->
+      <rect x="140" y="40" width="430.6" height="20" fill="#2D7EAA"/>
+      <text x="575.6" y="54" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0A0A0A">32.76***</text>
+      <text x="132" y="54" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">상업은행</text>
+      <rect x="140" y="74" width="289.7" height="20" fill="#2D7EAA"/>
+      <text x="434.7" y="88" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0A0A0A">22.04***</text>
+      <text x="132" y="88" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">투자펀드</text>
+      <rect x="140" y="108" width="253.8" height="20" fill="#6E6E6E"/>
+      <text x="398.8" y="122" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0A0A0A">19.31*</text>
+      <text x="132" y="122" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">외국 민간</text>
+      <rect x="140" y="142" width="163.3" height="20" fill="#6E6E6E"/>
+      <text x="308.3" y="156" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0A0A0A">12.42***</text>
+      <text x="132" y="156" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">보험회사</text>
+      <rect x="140" y="176" width="142.6" height="20" fill="#6E6E6E"/>
+      <text x="287.6" y="190" font-family="IBM Plex Mono,monospace" font-size="10" fill="#0A0A0A">10.85*</text>
+      <text x="132" y="190" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">연기금</text>
+      <rect x="140" y="210" width="20.1" height="20" fill="#C53030"/>
+      <text x="166" y="224" font-family="IBM Plex Mono,monospace" font-size="10" fill="#C53030">1.53 (비유의)</text>
+      <text x="132" y="224" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">외국 공식</text>
+      <rect x="140" y="244" width="19.8" height="20" fill="#C53030"/>
+      <text x="166" y="258" font-family="IBM Plex Mono,monospace" font-size="10" fill="#C53030">1.51 (비유의)</text>
+      <text x="132" y="258" font-family="Source Sans 3,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="end">주·지방정부</text>
+    </svg>
+    <figcaption><b>읽는 법.</b> 막대 길이는 부문별 수익률 탄력성 β₁(8년물 금리 1%p 상승 시 보유 % 증가). 파란 막대(은행·투자펀드)가 가장 탄력적, 빨간 막대(외국 공식·주·지방정부)는 거의 0으로 가격 무반응입니다. ***·*는 각각 유의수준 1%·10%. 수치는 논문 Table 4 Panel (a)에서 인용.</figcaption>
+  </div>
+</figure>
+
+<p>대표 결과 문장을 원문으로 확인하고 닻을 내리겠습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.4 (p.24–25)</div>
+  <p class="src-en">"Interestingly, we find the elasticity estimate for the foreign official sector to be statistically indistinguishable from zero. The result means that reserve managers in central banks are not particularly sensitive to changes in the yield of government debt."</p>
+  <p class="src-ko">흥미롭게도, 외국 공식부문의 탄력성 추정치는 통계적으로 0과 구별되지 않는 것으로 나타났다. 이 결과는 중앙은행의 준비금 운용 담당자들이 국채 수익률 변화에 특별히 민감하지 않다는 것을 의미한다.</p>
+</blockquote>
+<p>외국 공식부문의 무반응은 단순한 통계적 우연이 아니라 경제적으로 자연스럽습니다. 외국 중앙은행·국부펀드는 안전성·유동성을 위해 예비적 완충(precautionary buffer)으로 미 국채를 쌓는 것이라, 수익률이 조금 오르내린다고 보유를 조정할 동기가 약합니다. 이 무반응이 §13의 반사실에서 주인공이 됩니다 — 비탄력 부문이 많을수록 같은 물량을 소화하는 데 가격이 더 크게 움직여야 하기 때문입니다.</p>
+<p>강건성으로 바깥 자산을 직접 관측해 만든 식 6의 결과도 같은 그림을 줍니다(은행 33.34***, 투자펀드 20.09***, 보험 12.72***, 연기금 12.70***). 추정치의 유의성은 Anderson–Rubin Wald 검정(귀무가설: 계수=0)의 p값으로 보고하는데, 이는 약도구 환경에서도 신뢰할 수 있는 추론입니다(은행·투자펀드·보험 p&lt;0.01, 연기금 0.05, 외국 공식 0.83으로 0과 구별 안 됨). 표준오차는 이분산·자기상관에 강건한 Newey–West로 계산합니다.</p>
+
+<!-- ============================================================ s11 -->
+<h3 class="sec" id="s11"><span class="sn">11</span> 결과 ② — 가격탄력성과 8~13bp 환산 (식 7) <span class="chip">출판</span></h3>
+<p class="lead-q">표의 β₁은 "금리 1%p당 보유 % 변화"입니다. 이것을 "잔여 공급 1% 변화당 금리 몇 bp"라는 정책 언어로 어떻게 바꿀까요?</p>
+
+<h4 class="sub">반탄력성에서 가격탄력성으로 — 식 7의 사다리</h4>
+<p>β₁은 수익률 한 단위 변화에 대한 반응이라 엄밀히는 <b>반탄력성(semi-elasticity)</b>입니다. 이를 가격에 대한 표준 <b>가격탄력성</b>으로 바꾸는 정의식이 논문의 환산 사다리입니다.</p>
+<div class="eq" data-tex="-\frac{\partial\log(Q_{s,t})}{\partial\log(P_{s,t})}\;=\;1+\frac{\beta^{s}_1}{m_t}\times\big(1-w_{s,t}\big),\qquad m_t=8"></div>
+<p>말풀이 — 좌변은 가격탄력성의 정의입니다(가격이 1% 오를 때 수요량이 몇 % 주는가, 부호를 양수로 보이려고 앞에 음부호). 우변을 한 조각씩 봅시다.</p>
+<ul class="body">
+  <li><b><span class="eqi" data-tex="\beta^{s}_1/m_t"></span> — 단위 환산.</b> β₁은 금리(%p)당 반응인데, 금리 1%p는 듀레이션 <span class="eqi" data-tex="m_t=8"></span>년에서 가격 약 8% 변화에 해당합니다. 그래서 β₁을 8로 나누면 "금리당"이 "가격당"으로 바뀝니다.</li>
+  <li><b><span class="eqi" data-tex="(1-w_{s,t})"></span> — 갈아탈 여지.</b> <span class="eqi" data-tex="w_{s,t}"></span>는 그 부문 포트폴리오에서 국채가 차지하는 비중입니다. 국채 비중이 클수록(<span class="eqi" data-tex="w"></span>가 1에 가까울수록) "대신 갈아탈 다른 자산"이 적어 탄력성이 깎입니다. 그래서 <span class="eqi" data-tex="1-w"></span>를 곱합니다.</li>
+  <li><b>맨 앞의 1.</b> 로짓 수요에서 자기 자신으로의 대체까지 포함한 기준 탄력성 항입니다(KY 정의를 그대로 따름).</li>
+</ul>
+<p>각 부문의 가격탄력성을 보유 비중으로 가중평균하면, 장기물 보유자 전체의 <b>가중 가격탄력성이 시장 구성에 따라 약 1.6~2.1</b>로 나옵니다. 이를 뒤집으면 가격효과가 나옵니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.5 (p.27)</div>
+  <p class="src-en">"These estimates suggest a weighted price elasticity of demand between 1.6 and 2.1 depending on the market composition. This approximately translates into an impact between around 8 to 13 basis points on 8-year yields of a 1% change in the residual supply, respectively ... A higher price elasticity corresponds to a lower impact on yields."</p>
+  <p class="src-ko">이 추정치들은 시장 구성에 따라 1.6에서 2.1 사이의 가중 가격탄력성을 시사한다. 이는 잔여 공급 1% 변화가 8년물 수익률에 미치는 영향으로 대략 8~13bp에 해당한다. ... 가격탄력성이 높을수록 수익률에 미치는 영향은 작아진다.</p>
+</blockquote>
+<p>마지막 문장이 직관의 열쇠입니다 — <b>탄력성이 높을수록(시장이 탄력적일수록) 같은 물량 변화에 가격이 덜 움직입니다.</b> 탄력성 2.1이면 8bp, 1.6이면 13bp인 식입니다(탄력성이 낮은, 즉 비탄력적인 시장일수록 더 큰 13bp). 직관 확인 한 줄 — 외국 공식부문(비탄력)을 시장에서 빼면 남은 시장이 더 탄력적이 되어 가중 탄력성이 약 2.5로 오르고, 그만큼 금리 영향은 더 작아집니다.</p>
+<div class="note"><b>문헌 속 좌표.</b> 미국 국채의 이 탄력성은 다른 시장보다 큽니다 — Chaudhary et al.(2024)은 수요 1% 증가가 10년물 금리를 약 10bp 내린다고 보고해 거의 같은 자리이고, 유로 지역은 약 3(Koijen et al. 2021), 신흥국 국채는 부채 1% 증가가 58bp(Fang et al. 2022)로 훨씬 비탄력적입니다. 곧 미 국채 수요는 주식·회사채·신흥국 국채보다 탄력적이라는 것이 핵심 비교 결과입니다.</div>
+
+<!-- ============================================================ s12 -->
+<h3 class="sec" id="s12"><span class="sn">12</span> 결과 ③ — "QE&gt;QT"는 행동이 아니라 시장 구성 <span class="chip">출판</span></h3>
+<p class="lead-q">QE는 금리를 크게 내렸는데 QT는 그만큼 못 올리는 듯 보입니다. 투자자들이 QE 때와 QT 때 다르게 행동하기 때문일까요, 아니면 다른 이유가 있을까요?</p>
+
+<h4 class="sub">행동 가설을 직접 검정 — 상호작용항으로 탄력성 비교</h4>
+<p>"QE는 듣고 QT는 안 듣는다"를 행동 가설로 번역하면 "중앙은행 비중이 늘 때와 줄 때 부문 탄력성이 다르다"가 됩니다. 저자들은 이를 상호작용항으로 직접 검정합니다.</p>
+<div class="eq" data-tex="\log(H^{s}_t)=\alpha^{s}+\beta^{s}_1 Y^{8}_t\!\cdot\mathbf{1}(\Delta\text{CB Share}_t\!\ge0)+\beta^{s}_2 Y^{8}_t\!\cdot\mathbf{1}(\Delta\text{CB Share}_t\!<0)+\beta^{s}_3\mathbf{1}(\Delta\text{CB Share}_t\!<0)+\Gamma^{s\prime}X_t+\eta^{s\prime}W_t+t+t^{2}+\eta^{s}_t"></div>
+<p>말풀이 — <span class="eqi" data-tex="\mathbf{1}(\Delta\text{CB Share}_t\ge0)"></span>는 그 분기에 중앙은행 비중이 전 분기보다 늘었으면 1(QE형 국면), 줄었으면 0인 지시함수입니다. 그래서 <span class="eqi" data-tex="\beta^{s}_1"></span>은 비중이 늘 때의 탄력성, <span class="eqi" data-tex="\beta^{s}_2"></span>는 줄 때의 탄력성입니다. 핵심 검정은 <b><span class="eqi" data-tex="\beta^{s}_1=\beta^{s}_2"></span>인가</b> — 두 국면에서 행동이 같은가입니다. 이렇게 비중 증감으로 나누면 QT 분기(18개뿐)에만 의존하지 않고 표본을 더 고르게 가를 수 있습니다(표본의 58%가 비중 감소 국면).</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §4 (p.32–33)</div>
+  <p class="src-en">"Overall, we cannot reject the null hypothesis that the response of non-central bank participants during increasing or decreasing central bank share is symmetric."</p>
+  <p class="src-ko">전반적으로, 비중앙은행 참가자들의 반응이 중앙은행 비중이 늘 때와 줄 때 대칭이라는 귀무가설을 우리는 기각할 수 없다.</p>
+</blockquote>
+<p>검정 결과(논문 Table 5), 두 국면 탄력성이 같다는 귀무가설의 p값은 모든 부문에서 0.23~0.92로, 어디서도 기각되지 않습니다. 점추정만 보면 은행·투자펀드 등은 비중 감소 국면(QT형)에서 오히려 더 탄력적이지만(은행 40.41→54.52, 투자펀드 26.86→36.69), 차이는 통계적으로 유의하지 않습니다. <b>곧 부문별 행동에는 QE·QT 비대칭이 없습니다.</b></p>
+
+<h4 class="sub">그렇다면 비대칭의 정체 — 시기별 시장 구성</h4>
+<p>행동이 대칭인데 왜 QE 효과가 더 커 보일까요? 남는 용의자는 <b>시장 구성</b>입니다. §5에서 본 대로 시장은 2010년 무렵까지 비탄력적이었다가 점점 탄력적으로 바뀌었습니다(외국 공식부문 비중 축소 등). 그래서 <b>QE는 상대적으로 비탄력적인 시장에서, QT는 더 탄력적인 시장에서</b> 일어났습니다. 같은 물량 변화라도 비탄력 시장에서 가격이 더 크게 움직이므로, QE 효과가 더 커 보이는 것입니다.</p>
+<p>프로그램별 환산(논문 Figure 4)은 이렇습니다 — QE1 −25bp, QE2 −113bp, QE3 −57bp, QE4 −121bp; QT1 +43bp, QT2 +80bp(2024Q2까지). 발표 효과 문헌보다 큰 까닭은 짧은 창이 아니라 <b>프로그램 전 기간을 적분</b>하기 때문입니다. 비대칭이 구성 탓임을 보이려고, 저자들은 시장 구성을 맞바꾼 반사실을 계산합니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §4 (p.34)</div>
+  <p class="src-en">"In a counterfactual analysis, we assigned the market composition observed during the final quarter of the sample, as QT progressed, to each QE program. Similarly, we applied the peak aggregate market inelasticity observed during QE periods to QT programs."</p>
+  <p class="src-ko">반사실 분석에서, 우리는 QT가 진행된 표본 마지막 분기의 시장 구성을 각 QE 프로그램에 할당했다. 마찬가지로, QE 기간에 관측된 최고 수준의 총시장 비탄력성을 QT 프로그램에 적용했다.</p>
+</blockquote>
+<p>곧 "투자자 행동은 그대로 두고 시장 구성만 맞바꾸면 효과가 어떻게 달라지나"를 계산한 것입니다. 그 결과를 실측과 나란히 놓은 것이 아래 도표입니다.</p>
+
+<figure>
+  <div class="fig">
+    <div class="figtag">도표 2 · QE는 크고 QT는 작다 — 행동인가 구성인가 (논문 Figure 4b)</div>
+    <svg viewBox="0 0 620 300" role="img" aria-label="QE QT 프로그램별 효과와 반사실">
+      <line x1="80" y1="250" x2="590" y2="250" stroke="#0A0A0A" stroke-width="1.5"/>
+      <line x1="80" y1="40" x2="80" y2="250" stroke="#0A0A0A" stroke-width="1.5"/>
+      <line x1="80" y1="215.0" x2="590" y2="215.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="219" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">-100</text>
+      <line x1="80" y1="180.0" x2="590" y2="180.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="184" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">-50</text>
+      <line x1="80" y1="145.0" x2="590" y2="145.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="149" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">0</text>
+      <line x1="80" y1="110.0" x2="590" y2="110.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="114" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">50</text>
+      <line x1="80" y1="75.0" x2="590" y2="75.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="79" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">100</text>
+      <line x1="80" y1="40.0" x2="590" y2="40.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="44" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">150</text>
+      <line x1="80" y1="145.0" x2="590" y2="145.0" stroke="#0A0A0A" stroke-width="1.4"/>
+      <rect x="93.6" y="145.0" width="28.9" height="17.5" fill="#0A0A0A"/>
+      <text x="108" y="176" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">-25</text>
+      <rect x="122.5" y="145.0" width="28.9" height="11.9" fill="#2D7EAA"/>
+      <text x="137" y="170" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">-17</text>
+      <text x="122" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QE1</text>
+      <rect x="178.6" y="145.0" width="28.9" height="79.1" fill="#0A0A0A"/>
+      <text x="193" y="237" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">-113</text>
+      <rect x="207.5" y="145.0" width="28.9" height="53.2" fill="#2D7EAA"/>
+      <text x="222" y="211" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">-76</text>
+      <text x="208" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QE2</text>
+      <rect x="263.6" y="145.0" width="28.9" height="39.9" fill="#0A0A0A"/>
+      <text x="278" y="198" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">-57</text>
+      <rect x="292.5" y="145.0" width="28.9" height="28.0" fill="#2D7EAA"/>
+      <text x="307" y="186" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">-40</text>
+      <text x="292" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QE3</text>
+      <rect x="348.6" y="145.0" width="28.9" height="84.7" fill="#0A0A0A"/>
+      <text x="363" y="243" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">-121</text>
+      <rect x="377.5" y="145.0" width="28.9" height="78.4" fill="#2D7EAA"/>
+      <text x="392" y="236" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">-112</text>
+      <text x="378" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QE4</text>
+      <rect x="433.6" y="114.9" width="28.9" height="30.1" fill="#0A0A0A"/>
+      <text x="448" y="110" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">+43</text>
+      <rect x="462.5" y="103.0" width="28.9" height="42.0" fill="#2D7EAA"/>
+      <text x="477" y="98" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">+60</text>
+      <text x="462" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QT1</text>
+      <rect x="518.6" y="89.0" width="28.9" height="56.0" fill="#0A0A0A"/>
+      <text x="533" y="84" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">+80</text>
+      <rect x="547.5" y="49.8" width="28.9" height="95.2" fill="#2D7EAA"/>
+      <text x="562" y="45" font-family="Segoe UI,sans-serif" font-size="9.5" fill="#2D7EAA" text-anchor="middle">+136</text>
+      <text x="548" y="266" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">QT2</text>
+      <rect x="96.0" y="48.0" width="11.0" height="11.0" fill="#0A0A0A"/>
+      <text x="113" y="58" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A">실측 환산</text>
+      <rect x="96.0" y="68.0" width="11.0" height="11.0" fill="#2D7EAA"/>
+      <text x="113" y="78" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A">반사실 (시장 구성 교체)</text>
+      <text x="24" y="150" font-family="Segoe UI,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="middle" transform="rotate(-90 24 150)">8y 금리 효과 (bp)</text>
+    </svg>
+    <figcaption><b>읽는 법.</b> 검은 막대는 프로그램별 8년물 금리 효과(bp, 실측 환산: QE는 인하(−), QT는 인상(+)). 파란 막대는 반사실 — QT 시기의 (더 탄력적인) 구성으로 QE를 다시 환산한 값, 그리고 QE 절정기의 (더 비탄력적인) 구성으로 QT를 환산한 값입니다. 실측의 비대칭이 반사실에서 크게 줄거나(QE2: −113→−76) 역전됩니다(QT2: +80→+136). 부문 탄력성의 동일성을 기각하지 못한 §4 검정과 합쳐, 비대칭은 행동이 아니라 구성 효과라는 결론. 수치는 논문 본문·Figure 4에서 인용.</figcaption>
+  </div>
+</figure>
+<p>반사실 값(QE1 17, QE2 76, QE3 40, QE4 112; QT1 60, QT2 136)이 말하는 바는 분명합니다. 실측에서 보이던 "QE가 QT보다 크다"가, 시장 구성을 맞바꾸자 크게 줄거나 뒤집힙니다. <b>"QE&gt;QT"는 투자자가 QE 때와 QT 때 다르게 행동해서가 아니라, 그때 누가 시장에 있었느냐의 문제</b>라는 것이 이 논문의 가장 미묘한 결론입니다.</p>
+
+<!-- ============================================================ s13 -->
+<h3 class="sec" id="s13"><span class="sn">13</span> 결과 ④ — 부문을 빼 보는 반사실과 중국·걸프 시나리오 <span class="chip">출판</span></h3>
+<p class="lead-q">"외국 중앙은행이 미 국채에서 발을 빼면 금리가 어떻게 될까?" 이 논문의 탄력성 추정치는 이런 시나리오 계산의 도구가 됩니다.</p>
+
+<h4 class="sub">부문 빼기(take one out) — 직관이 한 번 꼬이는 자리</h4>
+<p>저자들은 한 부문씩 시장에서 빼 보며 QE·QT 효과가 어떻게 달라지는지 봅니다(논문 Figure 5). 가장 중요한 결과는 외국 공식부문(가장 비탄력)을 뺐을 때입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Introduction (p.4)</div>
+  <p class="src-en">"We find that in the absence of the foreign official sector, the sector with the most price inelastic demand, the impact of both QE and QT programs on yields would have been significantly smaller, more so for QE than QT."</p>
+  <p class="src-ko">가장 가격 비탄력적인 부문인 외국 공식부문이 없었다면, QE와 QT 프로그램이 수익률에 미친 영향은 둘 다 유의하게 더 작았을 것이며, QT보다 QE에서 더 그렇다.</p>
+</blockquote>
+<p>여기서 직관이 한 번 꼬입니다. "가격에 둔감한 부문을 빼면 효과가 <i>작아진다</i>"가 처음엔 거꾸로 들립니다. 풀어 보면 이렇습니다 — 비탄력 부문은 가격이 움직여도 물량을 내놓지 않으므로, 그들이 시장에 많을수록 같은 중앙은행 매입을 소화하는 데 남은 사람들의 가격이 <b>더 크게</b> 움직여야 합니다. 곧 비탄력 부문은 QE 효과의 <b>증폭기</b>입니다. 그들을 빼면 남은 시장이 더 탄력적이 되어 효과가 줄어듭니다(QE1·2·3·4가 각각 10·43·22·34bp 줄고, QT1·2가 15·20bp 줆). 반대로 탄력적인 외국 민간을 빼면 효과가 커집니다(QE가 14·44·24·37bp 증폭).</p>
+
+<h4 class="sub">전망 시나리오 — 중국 +26bp, 걸프 +10bp</h4>
+<p>같은 사다리로 지정학 시나리오도 어림합니다. 핵심은 "철수하는 부문의 비중 × 시장 탄력성"입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.5 (p.28)</div>
+  <p class="src-en">"In the former case, our estimates suggest that China completely withdrawing from the US Treasury market would have an impact of around 26 basis points on long-term yields as China's current holdings account for a share of around 3% of total marketable US Treasury debt. Similarly, Gulf States' holdings also account for around 1.2% of the total outstanding US Treasuries, suggesting an impact of around 10 basis points should these countries complete disinvest."</p>
+  <p class="src-ko">전자의 경우, 중국의 현재 보유가 미국 시장성 국채 총액의 약 3%를 차지하므로, 중국이 미 국채시장에서 완전히 철수하면 장기금리에 약 26bp의 영향이 있을 것으로 추정된다. 마찬가지로 걸프 국가들의 보유도 미 국채 총액의 약 1.2%를 차지하여, 이들이 완전히 회수하면 약 10bp의 영향이 있을 것으로 추정된다.</p>
+</blockquote>
+<p>다만 이 수치들은 <b>중앙은행이 그 물량을 흡수하지 않는다</b>는 가정의 상한입니다 — 연준이 탄력적으로 받아 주면 영향은 더 작아집니다. 저자들의 결론은 차분합니다: 다른 구조적 변화가 없다면, 이런 철수 시나리오에서도 다른 참가자들이 물량을 흡수해 가격 영향은 제한적이라는 것입니다. 이 계산법 자체가 실무자에게 그대로 쓸 수 있는 템플릿입니다 — 임의 부문의 철수 시나리오를 "비중 × 탄력성"으로 어림할 수 있습니다.</p>
+
+<!-- ============================================================ s14 -->
+<h3 class="sec" id="s14"><span class="sn">14</span> 국가 비교 — 영국의 우상향 수요와 2022년 길트 위기 <span class="chip">출판</span></h3>
+<p class="lead-q">우하향 수요곡선은 너무 당연해 보입니다. 그런데 어떤 부문은, 가격이 내릴수록 <i>더 파는</i> 거꾸로 된 수요를 보입니다. 어떻게 그럴 수 있을까요?</p>
+
+<p>저자들은 일본·영국에도 같은 분석을 적용하되, 도구가 미국만큼 깨끗하지 못함을 정직하게 밝히고 결과를 잠정적이라 부릅니다(일본은 도구가 전부 약하고, 영국은 1단계는 강하나 정보 충격에서 자유롭지 못함). 그럼에도 영국에서 계열 4 전체에서 가장 눈여겨볼 발견이 나옵니다 — <b>보험·연기금(ICPF)과 기타금융(OFI)의 수요곡선이 우상향</b>이라는 것입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3.7 (p.31)</div>
+  <p class="src-en">"An interesting feature of UK government bond markets is the estimated upward-sloping demand curves for the insurance company and pension fund (ICPF) sectors as well as Other Financial Institutions (OFI) which include investment funds. Upward-sloping demand curves in the context of financial assets can be due to several factors and act as shock amplifiers in financial markets."</p>
+  <p class="src-ko">영국 국채시장의 흥미로운 특징은 보험·연기금(ICPF) 부문과 투자펀드를 포함하는 기타금융(OFI)의 수요곡선이 우상향으로 추정된다는 점이다. 금융자산에서 우상향 수요곡선은 여러 요인에서 비롯될 수 있으며 금융시장에서 충격 증폭기로 작동한다.</p>
+</blockquote>
+<p>우상향 수요란 "가격이 내리면(금리가 오르면) 오히려 더 판다"는 뜻입니다. 정상적인 우하향 수요가 충격을 흡수(가격이 내리면 사 줘서 떠받침)하는 데 반해, 우상향 수요는 충격을 <b>증폭</b>합니다. 영국 ICPF에서 이것이 나타난 이유는 <b>LDI(부채연계투자)</b> 구조입니다 — 장기부채를 매칭하려고 레버리지를 써서 장기 국채를 들고 있다가, 가격이 내리면(금리가 오르면) 마진콜·디레버리징에 몰려 국채를 추가로 팔아야 합니다. 이 양의 되먹임 고리가 바로 <b>2022년 가을 영국 길트 위기</b>의 메커니즘입니다.</p>
+<div class="warn"><b>주의 — 수요 기울기의 부호가 시장 안정성을 가릅니다.</b> QT → 잔여 공급↑ → 가격↓(금리↑) → LDI 마진콜로 ICPF가 길트 추가 매도(우상향 수요) → 잔여 공급이 또 늘어난 효과 → 가격 추가 하락 → … 흡수 주체가 나타날 때까지 증폭됩니다. 2022년 9월 영란은행(BOE)이 긴급 매입(QT의 일시 역전)으로 끊은 것이 바로 이 고리입니다. "우하향 수요"라는 당연해 보이는 가정조차 부문·제도에 따라 깨질 수 있다는 것이 이 논문이 남기는 가장 무거운 함의입니다(유로 지역의 ICPF에서도 같은 우상향이 보고됩니다 — Koijen et al. 2021).</div>
+
+<!-- ============================================================ s15 -->
+<h3 class="sec" id="s15"><span class="sn">15</span> 비판적 읽기와 종합 · 셀프 체크 <span class="chip">출판</span></h3>
+<p class="lead-q">이 논문은 무엇을 분명히 보였고, 어디까지 믿을 수 있으며, 무엇을 남겨 두었을까요?</p>
+
+<h4 class="sub">저자들이 밝힌 한계</h4>
+<ul class="body">
+  <li><b>만기 구조가 없다.</b> Flow of Funds는 부문별 총보유만 줄 뿐 만기 분해가 없어, 만기별로 다른 탄력성은 다루지 못합니다(§1.3 JLS와 정확히 거울 관계 — ESX는 긴 표본·전 부문, JLS는 만기 구조·차익거래자).</li>
+  <li><b>집계 효과는 상한이다.</b> 빠른 트레이더(헤지펀드·딜러)를 비탄력으로 가정하고 추정에서 뺐으므로, 이들이 실은 탄력적이었다면 진짜 가격효과는 보고치보다 작습니다.</li>
+  <li><b>식별이 압도적이지는 않다.</b> 과소식별 검정의 p값이 0.06~0.13으로 통과하되 아슬아슬합니다. 1단계 F=47은 든든하지만, 생성된 도구·HAC 환경의 임계값과 비교한 것임을 기억해야 합니다.</li>
+  <li><b>신호 채널을 못 잡는다.</b> 설계상 수급 채널만 재므로, 서프라이즈가 컸던 QE1·QE4(코로나)처럼 신호 효과가 큰 프로그램은 효과를 과소평가할 수 있습니다.</li>
+  <li><b>타국 추정은 잠정적이다.</b> 일본은 도구가 전부 약하고, 영국·일본 모두 정보 효과에서 자유롭지 못해 저자 스스로 "신중을 권한다"고 적습니다.</li>
+</ul>
+
+<h4 class="sub">종합 — 이 논문을 한 문단으로</h4>
+<p>Eren·Schrimpf·Xia는 QE·QT의 가격효과를 "발표일 창"이 아니라 "수요곡선의 기울기"로 다시 세웠습니다. 부문별 탄력성을 통화정책 서프라이즈 도구변수로 깨끗하게 추정해, 은행·투자펀드가 가장 탄력적이고 외국 공식부문은 무반응임을 보였고, 이를 종합해 잔여 공급 1%당 8~13bp라는 환산기를 만들었습니다. 가장 인용 가치 있는 결론은 "QE&gt;QT" 비대칭이 행동이 아니라 시장 구성에서 온다는 것입니다 — 이는 정책 함의로 이어집니다. 외국 공식부문 비중이 줄고 시장이 더 탄력적이 된 지금, <b>앞으로의 QE는 과거만큼 효과적이지 않을 수 있습니다.</b> 그리고 영국 ICPF의 우상향 수요는, 비탄력을 넘어 부호가 뒤집힌 수요가 금융안정의 뇌관이 될 수 있음을 경고합니다.</p>
+<p>한국 시장으로 옮기려면 부문별 β₁의 한국판 추정이 선결입니다 — 한국은행 국고채 단순매입이나 외국인 비중 변화에 같은 사다리(식 7)를 적용하려면, 국내 부문별 탄력성과 시가 평가 조정이 먼저 필요합니다. 영국 LDI의 경고는 한국 보험 부문에도 그대로 시험해 볼 가설입니다.</p>
+
+<details class="key">
+  <summary>셀프 체크 — 회계와 행동, 흡수와 반응</summary>
+  <div class="keybody">
+    <p><b>Q1.</b> §2는 "QT2에서 가계(≈헤지펀드)가 신규 공급의 32~33¢를 흡수했다"고 하고, §3은 가계 탄력성을 거의 0으로 둡니다. 모순일까요?</p>
+    <p><b>A1.</b> 아닙니다. 두 β는 다른 대상을 잽니다. §2의 β는 회계적 흡수 몫(가격이 어떻든 누가 받아 갔나)이고, §3의 β₁은 가격(금리)에 대한 반응 기울기입니다. 헤지펀드의 QT2 매수는 8년물 금리 수준에 반응한 것이 아니라 현물-선물 베이시스라는 별도 신호에 반응한 것, 곧 잠재수요 η의 몫입니다. "많이 샀다"와 "가격에 탄력적이다"는 독립적인 진술입니다.</p>
+    <p><b>Q2.</b> 외국 공식부문을 시장에서 제거하면 QE의 금리 효과가 커질까요, 작아질까요?</p>
+    <p><b>A2.</b> 작아집니다(논문 추정: QE에서 10~43bp 감소). 직관이 한 번 꼬이는 자리입니다 — 무반응(비탄력) 부문은 가격이 움직여도 물량을 내놓지 않으므로, 그들이 많을수록 같은 매입을 소화하는 데 가격이 더 크게 움직여야 합니다. 비탄력 부문은 QE 효과의 증폭기이고, 빼면 남은 시장이 더 탄력적이 되어 효과가 줄어듭니다.</p>
+    <p><b>Q3.</b> 1단계 F가 47인데도 식별을 "압도적이지 않다"고 평하는 이유는?</p>
+    <p><b>A3.</b> F=47은 약도구 가설을 기각하기에 충분하지만, (i) 과소식별 LM 검정의 p값이 0.06~0.13으로 아슬아슬하고, (ii) 임계값 23.11은 표준 교과서값이 아니라 생성된 도구·HAC 오차 환경에 맞춘 Olea–Pflueger 유효 F 임계값입니다. 관련성은 든든하나 식별 전체가 넉넉하지는 않다는 뜻입니다.</p>
+    <p><b>Q4.</b> 영국 ICPF의 우상향 수요가 QT를 "자기악화적"으로 만드는 고리를 그려 보세요.</p>
+    <p><b>A4.</b> QT → 잔여 공급↑ → 가격↓(금리↑) → LDI 마진콜로 ICPF가 길트 추가 매도(우상향 수요) → 잔여 공급이 또 늘어난 효과 → 가격 추가 하락 → … 흡수 주체가 나타날 때까지 증폭. 2022년 9월 BOE의 긴급 매입이 이 고리를 끊었습니다. 수요 기울기의 부호 하나가 시장 안정성의 부호를 결정하는 사례입니다.</p>
+  </div>
+</details>
+
+<div class="refs">
+  <h2>참고 — 원문과 핵심 인용</h2>
+  <ol>
+    <li><b>해부 대상.</b> Eren, E., Schrimpf, A., &amp; Xia, F. D. (2026). <i>The Demand for Government Debt.</i> Forthcoming, Management Science (DOI 10.1287/mnsc.2025.00332). 해부 판본 = BIS Working Paper 1105 (2023년 6월 초판, 2025년 12월 개정판; 내지 2025.10.3). 동봉 PDF: <code>papers/eren_schrimpf_xia.pdf</code>.</li>
+    <li>Koijen, R. S. J., &amp; Yogo, M. (2019). A Demand System Approach to Asset Pricing. <i>Journal of Political Economy</i>, 127(4) — 수요시스템 방법론의 원전.</li>
+    <li>Fang, X., Hardy, B., &amp; Lewis, K. (2022). Who Holds Sovereign Debt and Why It Matters — 회계 분해(식 1·2) 방법의 출처.</li>
+    <li>Chaudhary, Fu, Zhou (2024) — 미 국채 수요 1%↑ → 10년물 +10bp (§1.5와 같은 자리).</li>
+    <li>Tabova, A., &amp; Warnock, F. (2022) — 투자자 듀레이션 7~8년(8년물·듀레이션 8 선택의 근거).</li>
+    <li>Vissing-Jorgensen (2021); Schrimpf, Shin, Sushko (2020); Barth &amp; Kahn (2021) — 가계=헤지펀드, 베이시스 차익거래.</li>
+  </ol>
+  <p class="disclaimer"><b>판본·정직성 고지.</b> 본 노트의 모든 인용은 BIS WP 1105 개정판 원문에서 직접 따왔고, 수치는 논문 본문·Table 1·2·4·5·Figure 4에서 인용했습니다. ⚠ BIS 사이트가 개정판으로 교체되어 2023년 초판과의 직접 대조는 불가하나, 출판사 초록의 핵심 수치(8~13bp·QE/QT 비대칭)가 개정판과 일치함을 확인했습니다. 피인용수는 정확히 확인하지 못해 "미확인"으로 둡니다. 본 노트는 학습 목적의 정독 해설로, 투자·정책 자문이 아닙니다.</p>
+</div>
+
+</div><!-- /content -->
+<div class="panel-rail">
+<aside class="tool-panel nav-panel">
+<div class="p-head">— Contents · 목차 —</div>
+<div class="p-grp">문제·사전지식</div>
+<a href="#s1"><span class="nl-n">1</span><span>이벤트 스터디의 한계</span></a>
+<a href="#s2"><span class="nl-n">2</span><span>수요기반 가격결정</span></a>
+<a href="#s3"><span class="nl-n">3</span><span>QE·QT와 잔여 공급</span></a>
+<div class="p-grp">데이터·두 질문</div>
+<a href="#s4"><span class="nl-n">4</span><span>데이터와 두 한계</span></a>
+<a href="#s5"><span class="nl-n">5</span><span>회계의 절(§2)</span></a>
+<a href="#s6"><span class="nl-n">6</span><span>회계 vs 행동</span></a>
+<div class="p-grp">모형·식별</div>
+<a href="#s7"><span class="nl-n">7</span><span>로짓 수요(식 3~6)</span></a>
+<a href="#s8"><span class="nl-n">8</span><span>식별 ① 내생성</span></a>
+<a href="#s9"><span class="nl-n">9</span><span>식별 ② 도구변수·F</span></a>
+<div class="p-grp">결과</div>
+<a href="#s10"><span class="nl-n">10</span><span>탄력성 순위</span></a>
+<a href="#s11"><span class="nl-n">11</span><span>8~13bp 환산(식 7)</span></a>
+<a href="#s12"><span class="nl-n">12</span><span>QE&gt;QT는 구성</span></a>
+<a href="#s13"><span class="nl-n">13</span><span>반사실·시나리오</span></a>
+<div class="p-grp">확장·평가</div>
+<a href="#s14"><span class="nl-n">14</span><span>영국 우상향 수요</span></a>
+<a href="#s15"><span class="nl-n">15</span><span>비판적 읽기·종합</span></a>
+</aside>
+<aside class="tool-panel formula-panel">
+<div class="p-head" id="fpHead">— 패널 —</div>
+
+<div class="fcard" data-sec="s1">
+ <div class="fblock">
+  <div class="fb-note"><b>문제.</b> QE·QT 효과를 발표일 창이 아니라 부문별 수요 탄력성으로 재구성.</div>
+  <div class="fv-h">핵심 결론</div>
+  <div class="fv"><span class="s">8~13bp</span><span class="d">— 잔여 공급 1%당 장기금리</span></div>
+  <div class="fv"><span class="s">QE&gt;QT</span><span class="d">— 행동 아닌 시장 구성</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s2">
+ <div class="fblock">
+  <div class="fb-note"><b>수요기반 가격결정.</b> 자산에도 우하향 수요곡선이 있고, 투자자 구성이 가격을 좌우한다.</div>
+  <div class="fv-h">부호 약속</div>
+  <div class="fv"><span class="s">β₁&gt;0</span><span class="d">— 금리↑→보유↑ = 우하향 수요(정상)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s3">
+ <div class="fblock">
+  <div class="fb-note"><b>잔여 공급.</b> = 발행 총량 − 중앙은행 보유. QE는 줄이고 QT는 늘린다.</div>
+  <div class="fv-h">가격효과 분해</div>
+  <div class="fv"><span class="s">①</span><span class="d">잔여 공급 % 변화(회계)</span></div>
+  <div class="fv"><span class="s">②</span><span class="d">1%당 bp(탄력성, 추정)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s4">
+ <div class="fblock">
+  <div class="fb-eq">\[\%\Delta P_{8y}\approx-\Delta y\times \text{MD}\]</div>
+  <div class="fb-note"><b>두 한계.</b> ① 만기 분해 없음 ② 시가 평가 → 평가 조정(MD=8) 필요.</div>
+  <div class="fv-h">자료</div>
+  <div class="fv"><span class="s">FoF</span><span class="d">— 미 자금순환표 분기 보유</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s5">
+ <div class="fblock">
+  <div class="fb-eq">\[\sum_s\beta^{s}=1\]</div>
+  <div class="fb-note"><b>회계 분해.</b> 신규 부채 1달러의 흡수 몫. 합이 1로 강제 — 행동 아님.</div>
+  <div class="fv-h">시기별 주역</div>
+  <div class="fv"><span class="s">Covid</span><span class="d">— CB+MMF 84%</span></div>
+  <div class="fv"><span class="s">QT</span><span class="d">— 가계(헤지펀드)·MMF</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s6">
+ <div class="fblock">
+  <div class="fb-note"><b>§2 vs §3.</b> 흡수 몫(누가 받았나) ≠ 탄력성(가격에 반응했나). 같은 β, 다른 대상.</div>
+  <div class="fv-h">가계(헤지펀드)</div>
+  <div class="fv"><span class="s">큰 흡수</span><span class="d">— 그러나 탄력성 ≈ 0</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s7">
+ <div class="fblock">
+  <div class="fb-eq">\[\log H^s_t=(\alpha^s+\phi^s)+\beta_1^s Y^8_t+\beta_2^{s\prime}X_t+\gamma^{s\prime}W_t+t+t^2+\eta^s_t\]</div>
+  <div class="fb-note"><b>로짓 수요(식 5).</b> 목표 모수는 β₁ 하나.</div>
+  <div class="fv-h">기호</div>
+  <div class="fv"><span class="s">β₁ˢ</span><span class="d">— 금리 1%p당 보유 % 변화</span></div>
+  <div class="fv"><span class="s">η</span><span class="d">— 잠재수요(미관측)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s8">
+ <div class="fblock">
+  <div class="fb-eq">\[\text{plim}\,\hat\beta_1=\beta_1+\tfrac{\operatorname{Cov}(Y,\eta)}{\operatorname{Var}(Y)}\]</div>
+  <div class="fb-note"><b>내생성.</b> 잠재수요가 보유·금리를 동시에 움직여 OLS는 편향. IV 필요.</div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s9">
+ <div class="fblock">
+  <div class="fb-note"><b>도구 = 통화정책 서프라이즈 PCA.</b> 느린 투자자는 30분 창을 못 만듦 → 외생.</div>
+  <div class="fv-h">약도구 검정</div>
+  <div class="fv"><span class="s">F=47.01</span><span class="d">— 임계 23.11, 정보상관 8%</span></div>
+  <div class="fv"><span class="s">개별</span><span class="d">— F 4~14로 약함</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s10">
+ <div class="fblock">
+  <div class="fb-note"><b>탄력성 순위.</b> 은행·투자펀드 최고, 외국 공식·SLG 무반응.</div>
+  <div class="fv-h">β₁ (%/1%p)</div>
+  <div class="fv"><span class="s">32.76</span><span class="d">— 은행***</span></div>
+  <div class="fv"><span class="s">22.04</span><span class="d">— 투자펀드***</span></div>
+  <div class="fv"><span class="s">1.53</span><span class="d">— 외국 공식(비유의)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s11">
+ <div class="fblock">
+  <div class="fb-eq">\[-\tfrac{\partial\log Q}{\partial\log P}=1+\tfrac{\beta_1^s}{m}(1-w_s)\]</div>
+  <div class="fb-note"><b>가격탄력성 환산(식 7).</b> 가중 1.6~2.1 → 8~13bp. 탄력적일수록 영향↓.</div>
+  <div class="fv-h">기호</div>
+  <div class="fv"><span class="s">m=8</span><span class="d">— 듀레이션 환산</span></div>
+  <div class="fv"><span class="s">w_s</span><span class="d">— 포트폴리오 내 국채 비중</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s12">
+ <div class="fblock">
+  <div class="fb-note"><b>비대칭 검정.</b> β₁=β₂(QE형=QT형) 기각 못 함(p=0.23~0.92) → 행동 대칭.</div>
+  <div class="fv-h">프로그램 효과(bp)</div>
+  <div class="fv"><span class="s">QE2</span><span class="d">−113(반사실 −76)</span></div>
+  <div class="fv"><span class="s">QT2</span><span class="d">+80(반사실 +136)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s13">
+ <div class="fblock">
+  <div class="fb-note"><b>부문 빼기.</b> 비탄력 부문은 효과의 증폭기 — 빼면 효과↓.</div>
+  <div class="fv-h">시나리오(상한)</div>
+  <div class="fv"><span class="s">+26bp</span><span class="d">— 중국 완전 철수(비중 3%)</span></div>
+  <div class="fv"><span class="s">+10bp</span><span class="d">— 걸프(비중 1.2%)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s14">
+ <div class="fblock">
+  <div class="fb-note"><b>영국 ICPF·OFI.</b> 우상향 수요(가격↓→더 팜) = 충격 증폭기. LDI 되먹임.</div>
+  <div class="fv-h">사례</div>
+  <div class="fv"><span class="s">2022</span><span class="d">— 길트 위기, BOE 긴급 매입</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s15">
+ <div class="fblock">
+  <div class="fb-note"><b>평가.</b> 깨끗한 식별·정직한 상한. 식별은 "작동하나 압도적이지 않음".</div>
+  <div class="fv-h">정책 함의</div>
+  <div class="fv"><span class="s">미래 QE</span><span class="d">— 시장 탄력화로 효과↓ 가능</span></div>
+ </div>
+</div>
+
+</aside>
+</div><!-- /with-layer-panel -->
+</div>
+
+<footer>Paper Study · Eren–Schrimpf–Xia (2026) — The Demand for Government Debt · 정독 노트</footer>
+
+<script>
+/* ── 수식: data-tex → 렌더 + 클릭 복사 ── */
+function showToast(){
+  var t=document.getElementById('toast');
+  t.style.opacity='1'; clearTimeout(t._tmo);
+  t._tmo=setTimeout(function(){t.style.opacity='0';},1300);
+}
+function fallbackCopy(text){
+  var ta=document.createElement('textarea');
+  ta.value=text; ta.style.position='fixed'; ta.style.top='-1000px';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function copyTeX(el){
+  var tex=el.getAttribute('data-tex');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(tex).then(showToast,function(){fallbackCopy(tex);showToast();});
+  }else{fallbackCopy(tex);showToast();}
+}
+document.querySelectorAll('.eq').forEach(function(el){
+  el.textContent='\\['+el.getAttribute('data-tex')+'\\]';
+  el.addEventListener('click',function(){copyTeX(el);});
+  el.title='클릭하면 LaTeX 소스가 복사됩니다';
+});
+document.querySelectorAll('.eqi').forEach(function(el){
+  el.textContent='\\('+el.getAttribute('data-tex')+'\\)';
+  el.addEventListener('click',function(){copyTeX(el);});
+  el.title='클릭하면 LaTeX 소스가 복사됩니다';
+});
+</script>
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},
+  svg:{fontCache:'global'},
+  options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js" id="MathJax-script"></script>
+
+<script>
+(function(){
+  var links={};
+  document.querySelectorAll('.nav-panel a').forEach(function(x){
+    links[x.getAttribute('href').slice(1)]=x;
+  });
+  var fcards={};
+  document.querySelectorAll('.fcard').forEach(function(c){
+    fcards[c.getAttribute('data-sec')]=c;
+  });
+  var fpHead=document.getElementById('fpHead');
+  var targets=Array.prototype.slice.call(document.querySelectorAll('h3.sec[id]'));
+  var secName={};
+  targets.forEach(function(t){
+    var c=t.cloneNode(true); var sn=c.querySelector('.sn'); if(sn) sn.parentNode.removeChild(sn);
+    var chip=c.querySelector('.chip'); if(chip) chip.parentNode.removeChild(chip);
+    secName[t.id]=c.textContent.trim().replace(/\s+/g,' ');
+  });
+  var cur=null;
+  function activate(id){
+    if(cur===id)return;
+    if(cur&&links[cur])links[cur].classList.remove('active');
+    if(links[id])links[id].classList.add('active');
+    cur=id;
+    for(var k in fcards){fcards[k].classList.toggle('fc-on',k===id);}
+    if(fpHead&&secName[id])fpHead.textContent='— '+secName[id]+' —';
+  }
+  function spy(){
+    var line=window.innerHeight*0.2,best=null;
+    targets.forEach(function(t){ if(t.getBoundingClientRect().top<line)best=t.id; });
+    if(best)activate(best);
+  }
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',spy,{passive:true});
+  window.addEventListener('load',spy);
+  if(window.MathJax&&MathJax.startup&&MathJax.startup.promise){MathJax.startup.promise.then(spy);}
+  spy();
+})();
+</script>
+</body>
+</html>
