@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantitative Tightening Around the Globe: What Have We Learned? - Du, Forbes, Luzzetti (2024)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Source+Sans+3:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --paper-2:#FAFAFA;
+  --ink:#0A0A0A; --ink-2:#2A2A2A; --mute:#6E6E6E; --muted:#6E6E6E;
+  --rule:#0A0A0A; --rule-l:#D6D6D6; --rule-xl:#ECECEC;
+  --cad-red:#C53030; --cad-blue:#2D7EAA; --layer-or:#ED8936;
+  --sans:'Source Sans 3','Malgun Gothic','맑은 고딕',system-ui,sans-serif;
+  --serif:'Source Serif 4','Nanum Myeongjo','바탕',Georgia,serif;
+  --mono:'IBM Plex Mono','D2Coding',Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);}
+body{font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--ink);
+  -webkit-font-smoothing:antialiased;}
+.wrap{max-width:1100px;margin:0 auto;padding:36px 50px 54px;
+  border-left:1px solid var(--rule-xl);border-right:1px solid var(--rule-xl);}
+a{color:var(--cad-red);text-decoration:none;border-bottom:1px solid var(--rule-l);}
+a:hover{border-bottom-color:var(--cad-red);}
+b,strong{font-weight:700;}
+i,em{font-style:italic;}
+header.mast{display:grid;grid-template-columns:1fr 322px;gap:26px;
+  align-items:start;padding-bottom:20px;border-bottom:1.5px solid var(--rule);
+  margin-bottom:38px;}
+.mast .firm{grid-column:1;grid-row:1;font-family:var(--mono);
+  font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cad-red);margin-bottom:3px;}
+.mast .series{grid-column:1;grid-row:2;font-family:var(--mono);
+  font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);margin-bottom:11px;}
+.mast h1{grid-column:1;grid-row:3;font-family:var(--serif);font-weight:600;
+  font-size:31px;line-height:1.18;letter-spacing:-.01em;color:var(--ink);
+  margin:0 0 10px;font-variation-settings:'opsz' 36;}
+.mast .subtitle{grid-column:1;grid-row:4;font-family:var(--sans);
+  font-weight:400;font-size:15.5px;line-height:1.5;color:var(--ink-2);
+  margin:0;max-width:600px;}
+.mast .metarow{grid-column:2;grid-row:1 / span 4;align-self:start;
+  border:1px solid var(--rule);background:var(--paper);font-family:var(--mono);
+  font-size:10.5px;}
+.mast .metarow .iso-row{display:grid;grid-template-columns:78px 1fr;
+  border-bottom:.5px solid var(--rule);}
+.mast .metarow .iso-row:last-child{border-bottom:0;}
+.mast .metarow .iso-row .k{padding:6px 9px;border-right:.5px solid var(--rule);
+  letter-spacing:.05em;color:var(--mute);font-weight:500;background:var(--paper-2);}
+.mast .metarow .iso-row .v{padding:6px 9px;color:var(--ink);
+  letter-spacing:.02em;font-weight:500;line-height:1.45;}
+.with-layer-panel{display:grid;grid-template-columns:1fr 264px;gap:30px;
+  align-items:start;}
+.content{min-width:0;}
+html{scroll-behavior:smooth;}
+.panel-rail{position:sticky;top:18px;display:flex;flex-direction:column;
+  gap:14px;max-height:calc(100vh - 34px);overflow-y:auto;}
+.tool-panel{border:1px solid var(--rule);background:var(--paper-2);
+  font-family:var(--mono);}
+.tool-panel .p-head{background:var(--ink);color:var(--paper);font-size:9px;
+  font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:7px 12px;}
+.nav-panel{padding-bottom:7px;}
+.nav-panel .p-grp{font-size:8.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mute);padding:11px 12px 3px;}
+.nav-panel a{display:flex;gap:7px;padding:3.5px 12px 3.5px 13px;font-size:11px;
+  color:var(--ink-2);text-decoration:none;border-bottom:none;
+  border-left:2px solid transparent;letter-spacing:.01em;}
+.nav-panel a:hover{color:var(--cad-red);background:#F0F0F0;}
+.nav-panel a .nl-n{min-width:23px;font-size:10px;font-weight:600;color:var(--mute);}
+.nav-panel a.active{color:var(--cad-red);background:var(--paper);
+  border-left-color:var(--cad-red);font-weight:600;}
+.nav-panel a.active .nl-n{color:var(--cad-red);}
+.formula-panel{padding:0 0 4px;}
+.fcard{display:none;}
+.fcard.fc-on{display:block;}
+.fblock{padding:9px 13px 11px;border-top:.5px solid var(--rule-l);}
+.fblock:first-child{border-top:none;}
+.fb-eq{font-size:13px;text-align:center;color:var(--ink);margin:3px 0 9px;}
+.fb-eq mjx-container{margin:0 !important;}
+.fb-eq mjx-container svg{max-width:100%;}
+.fb-note{font-family:var(--sans);font-size:10.5px;line-height:1.55;
+  color:var(--ink-2);margin:1px 0 9px;}
+.fb-note b{color:var(--cad-red);font-weight:600;}
+.fv-h{font-size:8px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);margin:4px 0 3px;}
+.fv{padding:3px 0;font-size:10px;line-height:1.5;color:var(--mute);}
+.fv .s{font-size:11.5px;color:var(--ink);margin-right:2px;}
+.fv .d{font-family:var(--sans);color:var(--mute);}
+.summary{border:1px solid var(--rule-l);border-top:3px solid var(--cad-red);
+  background:var(--paper-2);padding:17px 22px;margin:0 0 30px;}
+.summary h2{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--cad-red);margin:0 0 11px;}
+.summary p{margin:8px 0;font-size:14.5px;line-height:1.7;}
+nav.toc{border:1px solid var(--rule);margin:0 0 30px;padding-bottom:13px;}
+nav.toc h2{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+  background:var(--paper-2);border-bottom:1px solid var(--rule);
+  padding:9px 16px;margin:0;}
+nav.toc .grp{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cad-red);
+  margin:14px 0 0;padding:0 16px;}
+nav.toc ul{margin:6px 0 0;padding:0 16px 0 36px;list-style:none;}
+nav.toc li{margin:5px 0;font-size:14px;}
+nav.toc a{color:var(--ink);border-bottom:none;}
+nav.toc a:hover{color:var(--cad-red);}
+h3.sec{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:center;
+  margin:46px 0 20px;padding-bottom:9px;border-bottom:1.5px solid var(--rule);
+  font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.005em;
+  color:var(--ink);}
+h3.sec .sn{display:inline-flex;align-items:center;justify-content:center;
+  min-width:24px;height:24px;padding:0 6px;border:1.2px solid var(--cad-red);
+  color:var(--cad-red);font-family:var(--mono);font-size:11.5px;font-weight:700;
+  background:var(--paper);}
+h4.sub{font-family:var(--sans);font-weight:600;font-size:12px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--cad-red);
+  margin:30px 0 11px;}
+p{font-size:15px;line-height:1.75;margin:0 0 16px;color:var(--ink);}
+.lead-q{font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--ink-2);
+  border-left:3px solid var(--cad-red);padding-left:15px;margin:0 0 18px;}
+ul.body,ol.body{font-size:15px;line-height:1.75;margin:0 0 16px;padding-left:22px;}
+ul.body li,ol.body li{margin:7px 0;}
+.eq{cursor:pointer;position:relative;background:var(--paper-2);
+  border:1px solid var(--rule-l);border-left:3px solid var(--cad-red);
+  padding:24px 24px 16px;margin:24px 0;overflow-x:auto;
+  transition:background .2s,border-color .2s;}
+.eq::before{content:"NOTE / EQ";position:absolute;top:7px;left:20px;
+  font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.18em;
+  color:var(--cad-red);}
+.eq:hover{background:#F4F4F4;border-left-color:var(--ink);}
+.eq::after{content:"⊕ CLICK TO COPY LATEX";position:absolute;bottom:5px;right:13px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;
+  color:var(--mute);opacity:0;transition:opacity .2s;}
+.eq:hover::after{opacity:1;}
+.eqi{cursor:pointer;border-bottom:1px dotted var(--rule-l);}
+.eqi:hover{background:#F4F4F4;}
+mjx-container[jax="SVG"]{max-width:100%;}
+mjx-container[jax="SVG"] svg{max-width:100%;height:auto;}
+.eq mjx-container[jax="SVG"][display="true"]{margin:0!important;}
+.eq mjx-container[jax="SVG"]{font-size:106%;}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;
+  opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;}
+.note{border:1px solid var(--rule-l);border-left:3px solid var(--cad-blue);
+  background:var(--paper-2);padding:12px 16px;margin:18px 0;font-size:14px;
+  color:var(--ink-2);line-height:1.7;}
+.note b{color:var(--cad-blue);font-weight:700;}
+.warn{border:1px solid var(--rule-l);border-left:3px solid var(--cad-red);
+  background:var(--paper-2);padding:12px 16px;margin:18px 0;font-size:14px;
+  color:var(--ink-2);line-height:1.7;}
+.warn b{color:var(--cad-red);font-weight:700;}
+figure{margin:30px 0;}
+.fig{border:1px solid var(--rule);background:var(--paper);}
+.figtag{font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.1em;color:var(--ink);background:var(--paper-2);
+  border-bottom:1px solid var(--rule);padding:9px 16px;}
+.figtag::before{content:"";display:inline-block;width:7px;height:7px;
+  background:var(--cad-red);margin-right:8px;vertical-align:1px;}
+.fig > svg{display:block;width:100%;height:auto;padding:16px 18px 6px;}
+figcaption{font-family:var(--sans);font-size:11.5px;line-height:1.6;
+  color:var(--mute);border-top:.5px solid var(--rule-l);
+  padding:9px 16px 11px;margin:0;}
+figcaption b{font-weight:700;color:var(--ink-2);}
+table.tbl{width:100%;border-collapse:collapse;margin:22px 0;
+  font-family:var(--sans);font-size:13px;border:1px solid var(--rule);}
+table.tbl thead th{background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-weight:500;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;
+  text-align:left;vertical-align:bottom;}
+table.tbl td{padding:8px 12px;border-bottom:.5px solid var(--rule-l);
+  text-align:left;vertical-align:top;line-height:1.55;}
+table.tbl tbody tr:nth-child(even) td{background:var(--paper-2);}
+table.tbl tbody tr:last-child td{border-bottom:0;}
+.tbl .num{font-family:var(--mono);font-size:12px;text-align:right;white-space:nowrap;}
+code{font-family:var(--mono);font-size:.86em;background:var(--paper-2);
+  border:1px solid var(--rule-l);padding:1px 5px;}
+details.key{margin:22px 0;border:1px solid var(--rule);border-top:1px solid var(--rule-l);}
+summary{cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;padding:9px 15px;color:var(--ink);
+  background:var(--paper-2);list-style:none;user-select:none;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"+  ";color:var(--cad-red);font-weight:700;}
+details[open] summary::before{content:"−  ";}
+details.key summary{color:var(--cad-red);}
+.keybody{font-family:var(--sans);padding:9px 16px 14px;font-size:13px;
+  color:var(--ink-2);}
+.keybody p{font-size:13.5px;line-height:1.7;}
+.chip{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;
+  letter-spacing:.08em;padding:1.5px 7px;border:1.2px solid var(--ink-2);
+  color:var(--ink-2);vertical-align:3px;margin-left:10px;white-space:nowrap;}
+.chip.wp{border-color:var(--cad-red);color:var(--cad-red);}
+.tbl .chip{margin-left:0;vertical-align:1px;}
+.refs{margin-top:46px;border-top:1.5px solid var(--rule);padding-top:18px;}
+.refs h2{font-family:var(--mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);}
+.refs ol{padding-left:22px;}
+.refs li{font-family:var(--sans);font-size:12px;line-height:1.7;
+  color:var(--mute);margin-bottom:9px;}
+.disclaimer{margin-top:20px;font-family:var(--sans);font-size:11px;
+  line-height:1.55;color:var(--mute);}
+.disclaimer b{font-weight:600;color:var(--ink-2);}
+footer{margin-top:26px;border-top:1.5px solid var(--rule);padding-top:13px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mute);text-align:center;}
+@media (max-width:980px){
+  .wrap{padding:24px;border-left:0;border-right:0;}
+  header.mast{grid-template-columns:1fr;}
+  .mast .firm,.mast .series,.mast h1,.mast .subtitle{grid-column:1;}
+  .mast .metarow{grid-column:1;grid-row:auto;margin-top:14px;}
+  .with-layer-panel{grid-template-columns:1fr;}
+  .panel-rail{position:static;max-height:none;overflow:visible;}
+}
+.src{border:1px solid var(--rule-l);border-left:3px solid var(--cad-blue);
+  background:#FAFCFD;margin:18px 0;padding:0;}
+.src .src-tag{font-family:var(--mono);font-size:8.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--cad-blue);
+  background:var(--paper-2);border-bottom:.5px solid var(--rule-l);padding:5px 13px;}
+.src .src-en{font-family:var(--serif);font-style:italic;font-size:13.5px;
+  line-height:1.62;color:var(--ink-2);margin:0;padding:11px 16px 5px;}
+.src .src-ko{font-family:var(--sans);font-size:12.5px;line-height:1.62;
+  color:var(--mute);margin:0;padding:2px 16px 12px;}
+.src .src-ko::before{content:"\25B8 ";color:var(--cad-blue);font-weight:600;}
+</style>
+</head>
+<body>
+<div id="toast">LaTeX 수식이 복사되었습니다</div>
+<div class="wrap">
+
+<header class="mast">
+  <div class="firm">Paper Study · 계열 4</div>
+  <div class="series">논문 정독 · 대차대조표 정책과 국채시장</div>
+  <h1>글로벌 양적긴축(QT)의 첫 성적표 — 7개국 경험으로 본 가격·유동성 효과</h1>
+  <p class="subtitle">Du·Forbes·Luzzetti(2024), <i>Quantitative Tightening Around the Globe: What Have We Learned?</i>를 한 절씩 원문 인용 + 한국어 옮김 + 해설로 정독합니다. 발표 효과 · 이행 효과 · 자금순환의 세 측정으로 같은 정책을 삼각측량하는 설계를 따라갑니다.</p>
+  <div class="metarow">
+    <div class="iso-row"><div class="k">원문</div><div class="v">NBER WP 32321 (2024.4) · 2024 US Monetary Policy Forum 보고서</div></div>
+    <div class="iso-row"><div class="k">저자</div><div class="v">W. Du(Columbia·NBER) · K. Forbes(MIT·전 BoE MPC) · M. Luzzetti(Deutsche Bank 미국 수석)</div></div>
+    <div class="iso-row"><div class="k">데이터</div><div class="v">7개 선진국 QT 발표 48건(베이스라인 39) · 6개 중앙은행 증권 보유 · IMF 보유 구조</div></div>
+    <div class="iso-row"><div class="k">게재 지위</div><div class="v">학술지 미게재 — USMPF 확정 보고서(NBER WP) · 댈러스 연준 총재 L. Logan 공식 토론</div></div>
+    <div class="iso-row"><div class="k">유형</div><div class="v">실증 — 다국 이벤트 스터디 + 이행 효과 + 자금순환(3종 세트)</div></div>
+    <div class="iso-row"><div class="k">피인용</div><div class="v">정확 수치 미확인 — NBER WP·정책 포럼 보고서로 유통</div></div>
+    <div class="iso-row"><div class="k">평가</div><div class="v">다국 QT의 첫 종합 실증 — 정책·시장 양쪽의 표준 참조</div></div>
+  </div>
+</header>
+
+<div class="with-layer-panel">
+<div class="content">
+
+<div class="summary">
+  <h2>이 노트의 요지</h2>
+  <p>양적완화(QE)의 효과는 수백 편의 연구가 쌓였지만, 그 되돌림인 <b>양적긴축(QT)</b>은 2020년 전까지 실증 표본이 미국 한 번(2017~19년)뿐이었습니다. 2022년 인플레이션이 7개 선진국을 거의 동시에 QT로 밀어 넣으면서 처음으로 비교 가능한 다국 표본이 생겼고, 이 보고서가 그 첫 종합 성적표입니다. 핵심 질문은 하나입니다 — <b>중앙은행이 대차대조표를 줄이면 무슨 일이 일어나는가.</b></p>
+  <p>저자들은 같은 정책을 세 측정으로 삼각측량합니다. <b>(1) 발표 효과</b> — QT 발표는 장기금리를 1건당 약 4~8bp(1bp=0.01%p), 누적 20~26bp 올렸습니다(곡선은 스티프닝). <b>(2) 이행 효과</b> — 실제 매각·상환일의 가격 효과는 거의 0이었지만, 보유가 쌓여 줄어드는 재고 효과로 단기자금 스프레드가 오르고 국채 편의수익률이 내렸습니다. <b>(3) 자금순환</b> — 중앙은행이 비운 자리는 국내 비은행, 미국에서는 헤지펀드가 채웠습니다.</p>
+  <p>유명한 한 줄로 요약하면, QT는 옐런이 바라던 "페인트 마르기 구경"보다는 컸지만 "QE의 역재생"보다는 훨씬 작았습니다 — 다만 준비금이 어느 선 아래로 내려가면 갑자기 "물 끓이기"로 바뀔 수 있다는 경고로 닫습니다.</p>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px;">수식을 클릭하면 LaTeX가 복사됩니다. 오른쪽 패널은 지금 읽는 절의 핵심 식·수치·참조를 함께 보여 줍니다.</p>
+</div>
+
+<div class="note"><b>읽는 법.</b> 파란 박스(원문)는 논문의 영어 문장을 옮긴 것이고, ▸ 줄이 한국어 옮김입니다. 그 아래 본문이 그 문장을 풀어 해설합니다. 지위 배지 <span class="chip">확정 보고서</span> 는 학술지 게재본은 아니나 컨퍼런스(USMPF) 확정본으로 판본이 고정되었다는 뜻입니다(아래 신상명세 참고).</div>
+
+<nav class="toc">
+  <h2>목차 — 세 측정의 삼각측량</h2>
+  <div class="grp">문제와 사전지식</div>
+  <ul>
+    <li><a href="#s1">1. 문제 — QT 실증 표본이 1에서 8이 된 순간</a></li>
+    <li><a href="#s2">2. 사전지식 — 능동/수동 QT와 신호·듀레이션 채널</a></li>
+    <li><a href="#s3">3. 무엇이 일어났나(§2) — 7개국 전략·소통·진척</a></li>
+  </ul>
+  <div class="grp">측정 ① 발표 효과</div>
+  <ul>
+    <li><a href="#s4">4. 데이터 — 48개 발표, 6개 보유, IMF 자금순환</a></li>
+    <li><a href="#s5">5. 방법(§3) — 다국 패널 이벤트 스터디</a></li>
+    <li><a href="#s6">6. 결과 ① — 발표 효과 4~8bp, 누적 20~26bp</a></li>
+    <li><a href="#s7">7. 결과 ② — 능동=듀레이션, 수동=신호 채널</a></li>
+  </ul>
+  <div class="grp">측정 ②③ 이행·자금순환</div>
+  <ul>
+    <li><a href="#s8">8. 이행 효과(§4) — 플로우는 0, 재고는 흔적</a></li>
+    <li><a href="#s9">9. 자금순환(§5) — 국내 비은행, 미국은 헤지펀드</a></li>
+  </ul>
+  <div class="grp">종합과 평가</div>
+  <ul>
+    <li><a href="#s10">10. 종합 수사 — "페인트 마르기"와 "물 끓이기" 사이</a></li>
+    <li><a href="#s11">11. 비판적 읽기 — 네 가지 한계</a></li>
+    <li><a href="#s12">12. 종합 · 셀프 체크</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================ s1 -->
+<h3 class="sec" id="s1"><span class="sn">1</span> 문제 — QT 실증 표본이 1에서 8이 된 순간 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">QE가 금리를 내린다는 것은 수백 편의 연구가 보였습니다. 그런데 그 되돌림인 QT가 금리를 얼마나 올리는지는, 왜 2022년이 되어서야 제대로 잴 수 있게 되었을까요?</p>
+
+<table class="tbl">
+  <thead><tr><th style="width:96px;">신상명세</th><th></th></tr></thead>
+  <tbody>
+    <tr><td>지위</td><td><span class="chip">확정 보고서</span> NBER Working Paper 32321 (2024년 4월). <b>2024 US Monetary Policy Forum(USMPF)</b> 발표 보고서입니다. 동료심사 학술지 게재본은 아니지만, 시카고대 부스가 주최하고 연준 인사가 토론하는 권위 있는 정책 포럼의 확정본으로 판본이 고정되어 있습니다. 댈러스 연준 총재 Lorie Logan이 공식 토론을 맡았습니다.</td></tr>
+    <tr><td>저자</td><td>Wenxin Du(컬럼비아 경영대·NBER) · Kristin Forbes(MIT 슬론·CEPR·NBER, 전 영란은행 통화정책위원) · Matthew N. Luzzetti(도이체방크 미국 수석이코노미스트). 학계 둘과 실무자 한 명의 조합입니다.</td></tr>
+    <tr><td>유형</td><td>실증 보고서입니다. 새 이론모형을 세우는 대신, 같은 정책(QT)을 세 가지 측정 — 발표 효과(이벤트 스터디) · 이행 효과 · 자금순환 — 으로 삼각측량합니다.</td></tr>
+    <tr><td>데이터</td><td>7개 선진국(미국·영국·유로·캐나다·호주·뉴질랜드·스웨덴)의 QT 발표 48건(베이스라인 39건), 2일 창의 금리·자산가격(블룸버그). 6개 중앙은행의 증권 단위 보유. IMF·국가별 자료의 투자자 구성.</td></tr>
+    <tr><td>핵심 주장</td><td>QT 발표는 장기금리를 1건당 4~8bp(누적 20~26bp) 올리며 곡선을 스티프닝한다. 능동 QT는 듀레이션(텀프리미엄) 채널, 수동 QT는 신호 채널로 작동한다. 이행 자체의 가격 효과는 미미하고, 비운 자리는 국내 비은행(미국은 헤지펀드)이 채웠다. QT는 "페인트 마르기"보다 크고 "QE 역재생"보다 작다.</td></tr>
+  </tbody>
+</table>
+
+<p>출발점은 명확한 비대칭입니다. QE는 표준 도구가 되며 방대한 연구가 쌓였지만, 그 반대 방향은 거의 비어 있었습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.2)</div>
+  <p class="src-en">"In contrast, there has been almost no research assessing the impact of unwinding these asset holdings, i.e., quantitative tightening (QT), as only one country had made meaningful progress before 2020 (the US from 2017-2019)."</p>
+  <p class="src-ko">이와 대조적으로, 이 자산 보유를 되돌리는 것, 곧 양적긴축(QT)의 영향을 평가한 연구는 거의 없었다 — 2020년 전까지 의미 있는 진척을 이룬 나라가 한 곳(2017~2019년의 미국)뿐이었기 때문이다.</p>
+</blockquote>
+<p>표본이 하나뿐이면 일반화가 불가능합니다. 게다가 그 한 번(미국 2017~19년)마저 2019년 9월 레포 시장 발작으로 조기 종료됐습니다. 그런데 2021년 상황이 급변합니다 — 경기가 반등하고 인플레이션이 치솟자, 중앙은행들이 예상보다 빠르고 크게 긴축해야 한다는 것을 깨달았습니다. 정책금리를 0에서 충분히 끌어올릴 수 있게 된 덕에, QT의 효과가 불확실해도 동시에 도입할 여건이 생겼습니다. 그 결과 2022년 7개 선진국이 거의 동시에 QT에 들어갔고, 처음으로 비교 가능한 다국 표본이 만들어졌습니다.</p>
+<p>이 보고서의 설계가 <b>세 겹</b>인 이유가 여기 있습니다. 같은 정책을 서로 다른 세 측정으로 보아, 한 측정의 약점을 다른 측정이 메우게 합니다 — <b>(1)</b> 발표가 가격을 움직였나(이벤트 스터디), <b>(2)</b> 실제 매각·상환이 가격·유동성을 움직였나(이행 효과), <b>(3)</b> 중앙은행이 비운 자리를 누가 채웠나(자금순환). 같은 사건을 세 각도에서 삼각측량하는 구조 자체가 이 보고서의 방법론적 기여입니다. 본문에서는 이 세 측정을 §5~§9에서 차례로 따라가겠습니다.</p>
+
+<!-- ============================================================ s2 -->
+<h3 class="sec" id="s2"><span class="sn">2</span> 사전지식 — 능동/수동 QT와 신호·듀레이션 채널 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">QT를 읽으려면 먼저 네 개의 구분이 필요합니다 — 능동 대 수동, 신호 대 듀레이션, 편의수익률, 그리고 준비금. 하나씩 깔아 두겠습니다.</p>
+
+<h4 class="sub">QE·QT와 능동/수동의 구분</h4>
+<p>정책금리를 0까지 내려도 모자랄 때 중앙은행은 <b>양적완화(QE)</b>로 장기 국채를 대량 매입해 장기금리를 직접 끌어내립니다. 그 되돌림이 <b>양적긴축(QT)</b>인데, 두 방식이 있습니다.</p>
+<ul class="body">
+  <li><b>수동 QT(passive)</b> — 보유 채권이 만기 도래하면 그 원금을 <i>재투자하지 않고</i> 자연 소멸시킵니다. 시장에 추가로 내다 팔지는 않으므로 충격이 완만합니다. 미국·캐나다·영란은행 초기가 이 방식입니다.</li>
+  <li><b>능동 QT(active)</b> — 만기 전 보유 채권을 <i>시장에 직접 매각</i>합니다. 듀레이션 공급을 적극적으로 시장에 되돌리므로 충격이 큽니다. 뉴질랜드·스웨덴·영국이 이 방식을 함께 썼습니다.</li>
+</ul>
+<p>능동/수동의 구분이 이 보고서의 핵심 축입니다. 둘이 서로 다른 경로로 금리를 움직인다는 것이 §7의 결론이기 때문입니다.</p>
+
+<h4 class="sub">두 채널 — 듀레이션(텀프리미엄)과 신호</h4>
+<p>대차대조표 정책이 장기금리를 움직이는 통로는 크게 둘로 갈립니다. 이 둘을 가르는 것이 이 보고서의 가장 중요한 분석입니다.</p>
+<div class="note"><b>개념 — 듀레이션 채널과 신호 채널.</b> <b>듀레이션(텀프리미엄) 채널</b>은 "물량" 경로입니다. 중앙은행이 장기채를 팔면(능동 QT) 시장이 떠안아야 할 듀레이션 공급이 늘고, 그 위험을 보상하라고 <b>텀프리미엄</b>(장기물을 드는 데 요구되는 추가 보상)이 올라 장기금리가 오릅니다. 장기·곡선 스티프닝에 효과가 실립니다. <b>신호(signaling) 채널</b>은 "기대" 경로입니다. QT 시작 자체가 "중앙은행이 그만큼 긴축에 진지하다"는 신호로 읽혀, 앞으로의 정책금리 기대가 매파적으로 재가격됩니다. 단기금리(정책 경로 기대)에 효과가 실립니다. QE가 "정책금리를 오래 낮게 두겠다"는 신호로 일부 작동한 것의 거울입니다.</div>
+<p>왜 이 구분이 중요할까요? 같은 "QT 발표가 금리를 올렸다"는 사실도, 그것이 물량(듀레이션) 때문인지 기대(신호) 때문인지에 따라 정책 함의가 완전히 달라지기 때문입니다. 저자들은 능동 QT는 듀레이션 채널, 수동 QT는 신호 채널의 지문을 보인다고 식별합니다(§7).</p>
+
+<h4 class="sub">편의수익률과 준비금 — 이행 효과를 읽는 두 변수</h4>
+<p>이행 효과(§8)를 읽으려면 두 개념이 더 필요합니다.</p>
+<ul class="body">
+  <li><b>편의수익률(convenience yield)</b> — 국채는 안전하고 유동성이 높아, 같은 위험의 다른 자산보다 투자자가 <i>수익률을 조금 덜 받고도</i> 기꺼이 듭니다. 이 "편의" 때문에 깎인 수익률 폭이 편의수익률입니다. 이 보고서는 이를 <b>스왑 스프레드</b>(같은 만기의 금리스왑 금리 − 국채 수익률)로 측정합니다. QT로 국채 공급이 늘면 국채의 "희소한 안전자산" 지위가 약해져 편의수익률이 줄어들 것으로 봅니다.</li>
+  <li><b>준비금(reserves)과 ON RRP</b> — 중앙은행이 자산을 줄이면 부채 쪽에서 은행 지급준비금이나 비은행의 역레포(ON RRP) 잔액이 줄어듭니다. 준비금이 줄수록 은행 간 단기자금 시장이 빡빡해져 익일물 자금 스프레드가 오릅니다. 미국에서는 ON RRP라는 완충장치가 먼저 빠져 준비금을 지켜 줬는데, 이것이 §8의 핵심 반전입니다.</li>
+</ul>
+
+<!-- ============================================================ s3 -->
+<h3 class="sec" id="s3"><span class="sn">3</span> 무엇이 일어났나(§2) — 7개국 전략·소통·진척 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">7개국은 QT를 언제, 어떻게 시작했고, 어디까지 줄였을까요? 그리고 그 다양성 자체가 무엇을 가르쳐 줄까요?</p>
+
+<p>본격 분석에 앞서, §2는 7개국이 대차대조표를 어떻게 줄여 왔는지를 정리합니다. 이 절의 첫 발견은 숫자가 아니라 <b>제도 변화</b> 자체입니다 — QT가 더 이상 금기가 아니게 되었다는 것입니다. 팬데믹 후 QT는 QE 종료 후 평균 7개월, 첫 금리 인상 후 3개월 만에 시작됐습니다(미국의 직전 사이클에서는 각각 36개월, 22개월이 걸렸습니다). 긴축이 절실해지자 중앙은행들이 QT를 훨씬 앞당겨 꺼내 든 것입니다.</p>
+<p>선두는 영란은행(BoE)이었습니다. 2022년 2월 정책금리를 0.5%로 올리며 QT를 시작했는데, 이는 미리 "정책금리가 이 수준에 닿으면 만기 도래 국채의 재투자를 멈춰 QT를 시작하겠다"고 예고해 둔 덕이었습니다. 금리-임계 가이던스로 시장이 미리 대비하게 해 발작 없이 선두로 나선 설계는 그 자체로 소통 교훈입니다.</p>
+<p>진척의 정도는 나라마다 크게 다릅니다. 2023년 말까지 보유 증권을 캐나다·스웨덴은 약 40%, 뉴질랜드는 25%, 미국·영국은 15% 줄였습니다. 앞으로의 정상화 전망도 갈립니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.4)</div>
+  <p class="src-en">"The BoC, BoE, RBNZ, and Riksbank are on track to unwind around 80% or more of their QE purchases by end-2025, while the Fed and RBA will unwind only about 50% of the increase in their asset holdings since the pandemic, and the ECB even less."</p>
+  <p class="src-ko">캐나다·영국·뉴질랜드·스웨덴 중앙은행은 2025년 말까지 QE 매입분의 약 80% 이상을 되돌릴 궤도에 있는 반면, 연준과 호주 중앙은행은 팬데믹 이후 자산 증가분의 약 50%만, 유럽중앙은행은 그보다도 더 적게 되돌릴 것이다.</p>
+</blockquote>
+<p>이 다양성이 곧 이 보고서의 자산입니다. 시작 시점·속도·능동/수동·대상 자산(국채만인지 회사채·MBS까지인지)이 나라마다 달라, 그 변이를 이용해 "어떤 QT가 어떤 효과를 내는가"를 비교할 수 있습니다. 다음 절부터 그 비교를 따라갑니다.</p>
+
+<!-- ============================================================ s4 -->
+<h3 class="sec" id="s4"><span class="sn">4</span> 데이터 — 48개 발표, 6개 보유, IMF 자금순환 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">세 측정에는 각기 다른 자료가 필요합니다. 무엇을 어떻게 모았고, 발표 48건을 어떻게 분류했을까요?</p>
+
+<p>세 측정에 맞춰 세 종류의 자료를 씁니다.</p>
+<ul class="body">
+  <li><b>발표 효과용</b> — 7개국 QT 관련 발표 48건. 각 발표 전후 <b>2일 창</b>(발표 전일 종가 → 익일 종가)의 국채 수익률(여러 만기)과 주가·회사채·환율·인플레 보상 등 자산가격을 블룸버그에서 수집합니다.</li>
+  <li><b>이행 효과용</b> — 6개 중앙은행의 <b>증권 단위 보유</b>(어떤 종목을 얼마나 들고 있나)와 주요 자산·부채 항목. 미국은 2017~19년분도 포함합니다.</li>
+  <li><b>자금순환용</b> — IMF와 국가별 자료의 투자자 그룹별 국채 보유. 누가 중앙은행의 빈자리를 채웠는지를 봅니다.</li>
+</ul>
+<p>발표 48건의 <b>분류</b>가 분석의 뼈대입니다. 두 축으로 나눕니다. 첫째 축은 발표의 구체성 — <b>예비 논의</b>(QT의 일반 원칙이나 막연한 가능성을 언급, 효과 0으로 기대), <b>본 발표</b>(시작·세부를 구체적으로 알리는 발표), <b>종료</b>(QT 축소·중단). 둘째 축은 방식 — <b>능동</b>(매각) 대 <b>수동</b>(미재투자). 저자들은 능동·수동의 구성을 다음과 같이 밝힙니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §3 (p.18, 재구성)</div>
+  <p class="src-en">"Of the 48 QT events in the sample, 19 involve news on Active QT and 32 involve news on Passive QT (with 3 events including news on both)."</p>
+  <p class="src-ko">표본의 48개 QT 사건 중 19건은 능동 QT, 32건은 수동 QT에 관한 뉴스를 담는다(3건은 둘 다 포함).</p>
+</blockquote>
+<p>19 + 32 − 3 = 48로 맞아떨어집니다(능동·수동을 동시에 담은 3건의 중복을 빼면 48). 능동 QT 사건의 다수는 영국에 몰려 있는데, 영국이 적극적 매각을 가장 활발히 한 나라이기 때문입니다 — 이 사실이 §7의 능동 채널 추정에서 영국의 비중을 키웁니다.</p>
+
+<!-- ============================================================ s5 -->
+<h3 class="sec" id="s5"><span class="sn">5</span> 방법(§3) — 다국 패널 이벤트 스터디 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">발표가 금리를 움직였는지를 깨끗하게 재려면, 같은 날 섞여 든 다른 뉴스를 어떻게 걷어낼까요?</p>
+
+<h4 class="sub">추정식 — 발표 더미와 두 가지 뉴스 통제</h4>
+<p>발표 효과는 다국 패널 <b>이벤트 스터디</b>로 추정합니다. 여러 나라·여러 시점의 발표를 한 회귀에 모아, 발표 유형별 효과를 가립니다.</p>
+<div class="eq" data-tex="\Delta y_{it}=\alpha_i+\sum_{C}\beta_C\,QT^{C}_{it}+\boldsymbol{\gamma}'\,\mathbf{News}_{it}+\varepsilon_{it}"></div>
+<p>말풀이 — <span class="eqi" data-tex="\Delta y_{it}"></span>는 나라 <span class="eqi" data-tex="i"></span>의 발표일 <span class="eqi" data-tex="t"></span>에서 2일 창의 국채 수익률 변화(bp)입니다. <span class="eqi" data-tex="QT^{C}_{it}"></span>는 발표 유형 <span class="eqi" data-tex="C"></span>의 지시 더미로, 그날 그 유형의 발표가 있었으면 1입니다(<span class="eqi" data-tex="C"></span>는 예비/본/종료 × 능동/수동의 조합). 따라서 <span class="eqi" data-tex="\beta_C"></span>가 그 유형 발표 한 건의 평균 금리 효과 — 이 회귀의 관심 모수입니다. <span class="eqi" data-tex="\alpha_i"></span>는 나라 고정효과로, 나라마다 다른 평균 수준을 흡수합니다. <span class="eqi" data-tex="\mathbf{News}_{it}"></span>는 같은 날 섞여 든 두 가지 뉴스를 통제하는 벡터이고(프라임 <span class="eqi" data-tex="\boldsymbol{\gamma}'"></span>은 각 통제에 계수를 곱해 더한다는 표시), <span class="eqi" data-tex="\varepsilon_{it}"></span>는 잔차입니다.</p>
+<p>두 가지 뉴스 통제가 핵심입니다 — <b>정책금리 서프라이즈</b>(그날 발표된 정책금리 결정 − 블룸버그 사전 중위 전망)와 <b>데이터 서프라이즈</b>(Citi 경기서프라이즈지수의 변화). QT 발표는 흔히 통화정책회의에서 금리 결정과 함께 나오므로, 이 둘을 빼지 않으면 "금리 인상 서프라이즈"의 효과가 "QT 발표"의 효과로 잘못 잡힙니다.</p>
+<div class="note"><b>설계 선택 — 일부러 뺀 시간 고정효과.</b> 보통의 패널 회귀는 시점 고정효과를 넣어 그날 전 세계 공통 충격을 흡수합니다. 그런데 여기서는 일부러 넣지 않습니다. 시간 고정효과를 넣으면 "미국 QT 발표가 같은 날 타국 금리를 움직이는" 국경 간 스필오버까지 흡수되어 측정이 불가능해지기 때문입니다. 스필오버를 보고 싶으면 시간 더미를 빼야 합니다 — 측정하려는 것이 무엇이냐가 설계를 정합니다.</div>
+
+<h4 class="sub">식별과 하한 — 추정치가 과소평가인 두 이유</h4>
+<p>이벤트 스터디의 식별 논거는 "발표는 사전에 계획된 일정에 나오므로, 그날의 금리 변화가 발표를 일으킨 역인과는 없다"는 것입니다. 다만 저자들은 추정치가 <b>하한(과소평가)</b>일 수 있음을 정직하게 밝힙니다 — 두 가지 이유에서입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.7)</div>
+  <p class="src-en">"our estimates of the announcement and implementation effects of QT could understate any impact if markets incorporated these changes before the narrow dates used for our analysis, or if the effects take longer to play out than the short windows used for estimation."</p>
+  <p class="src-ko">QT의 발표·이행 효과 추정치는, 시장이 우리가 쓰는 좁은 날짜 이전에 이미 그 변화를 반영했거나, 효과가 추정에 쓴 짧은 창보다 더 오래 걸쳐 나타난다면, 실제 영향을 과소평가할 수 있다.</p>
+</blockquote>
+<p>풀면 이렇습니다. <b>첫째</b>, 예상된 발표는 가격에 미리 반영되어 2일 창에 안 잡힙니다 — 예상될수록 효과가 0 쪽으로 편향됩니다. <b>둘째</b>, 이행의 재고 효과는 발표일이 아니라 보유가 줄어드는 수개월에 걸쳐 천천히 누적되므로, 좁은 이벤트 창 밖에 있습니다. 그래서 이 보고서의 발표 효과는 "QT의 진짜 전체 효과"의 하한으로 읽어야 합니다.</p>
+
+<!-- ============================================================ s6 -->
+<h3 class="sec" id="s6"><span class="sn">6</span> 결과 ① — 발표 효과 4~8bp, 누적 20~26bp <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">그래서 QT 발표는 금리를 얼마나 올렸을까요? 그리고 그 크기는 "큰" 걸까요, "작은" 걸까요?</p>
+
+<p>핵심 결과는 작지만 일관됩니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Abstract</div>
+  <p class="src-en">"QT announcements increase government bond yields, steepening the yield curve and potentially signaling a greater commitment to raising policy interest rates, but have more limited effects on most other financial market indicators. Active QT has a larger impact than passive QT, particularly on longer maturities."</p>
+  <p class="src-ko">QT 발표는 국채 수익률을 올리고 수익률곡선을 가파르게 하며, 정책금리 인상에 대한 더 강한 의지를 신호할 가능성이 있다. 다만 다른 대부분의 금융시장 지표에는 더 제한적인 효과만 미친다. 능동 QT는 수동 QT보다, 특히 장기물에서 더 큰 영향을 준다.</p>
+</blockquote>
+<p>크기를 숫자로 보면, 발표 1건당 1년물 이상 만기에서 약 <b>+4~8bp</b>입니다. 한 나라에서 2021~23년의 발표를 모두 합치면 누적 <b>+20~26bp</b>(평균), 능동 매각을 가장 많이 한 영국은 <b>+44~70bp</b>에 이릅니다. 미국의 두 사이클 대비가 인상적입니다 — QT1(2017~19년)은 10년물 누적 +0.1bp로 거의 0이었지만(옐런의 "페인트 마르기"가 성공한 사례), QT2(2022년~)는 +21bp였습니다.</p>
+<table class="tbl">
+  <thead><tr><th>구분</th><th>발표 효과(1년물 이상)</th><th>읽는 법</th></tr></thead>
+  <tbody>
+    <tr><td>발표 1건</td><td class="num">+4~8bp</td><td>작지만 통계적으로 유의. 본 발표일수록 크고, 예비 논의는 거의 0.</td></tr>
+    <tr><td>누적(평균, 2021~23)</td><td class="num">+20~26bp</td><td>나라·프로그램별 이질성 큼.</td></tr>
+    <tr><td>누적(영국)</td><td class="num">+44~70bp</td><td>능동 매각 비중이 가장 높아 효과가 큼.</td></tr>
+    <tr><td>미국 QT1(2017~19)</td><td class="num">+0.1bp</td><td>10년물 누적 — 거의 무영향("페인트 마르기").</td></tr>
+    <tr><td>미국 QT2(2022~)</td><td class="num">+21bp</td><td>10년물 누적.</td></tr>
+  </tbody>
+</table>
+<p>이 크기를 어떻게 평가할까요? 저자들은 두 기준선과 비교합니다 — QE 발표 전체의 효과(부호 반대)보다는 <b>훨씬 작고</b>, 시장이 평온할 때 나온 제한적 QE 발표의 효과와는 <b>엇비슷하되 대체로 더 작다</b>는 것입니다. 위기 때의 대규모 QE가 금리를 100bp 넘게 움직인 것에 비하면, QT의 +20여 bp는 "역재생"이라 부르기엔 작습니다. 다른 지표(주가·회사채·환율·인플레 보상)는 대체로 긴축 방향을 가리키나 통계적으로 유의하지 않았고, 예외는 회사채 지수와 국채 편의수익률의 유의한 하락이었습니다.</p>
+
+<!-- ============================================================ s7 -->
+<h3 class="sec" id="s7"><span class="sn">7</span> 결과 ② — 능동=듀레이션, 수동=신호 채널 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">같은 "발표가 금리를 올렸다"도 능동과 수동은 다른 자리에 효과가 실립니다. 어떻게 두 채널을 갈라냈을까요?</p>
+
+<p>이 절이 보고서의 분석적 백미입니다. 능동 QT와 수동 QT의 효과가 만기별로 다르게 나타나는데, 그 패턴이 두 채널의 지문입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.5)</div>
+  <p class="src-en">"QT also appears to affect yields by increasing the term spread, especially for active QT, which has a larger impact on longer-term yields. In contrast, passive QT appears to have a larger impact on shorter-term yields."</p>
+  <p class="src-ko">QT는 또한 텀스프레드를 키워 수익률에 영향을 주는 것으로 보이며, 이는 특히 능동 QT에서 그러한데 능동 QT는 장기 수익률에 더 큰 영향을 준다. 반면 수동 QT는 단기 수익률에 더 큰 영향을 주는 것으로 보인다.</p>
+</blockquote>
+<p>이 만기별 차이를 그림으로 보면 두 채널의 지문이 또렷합니다.</p>
+
+<figure>
+  <div class="fig">
+    <div class="figtag">도표 1 · 능동 QT와 수동 QT는 다른 채널로 작동한다 (논문 Table 3.3)</div>
+    <svg viewBox="0 0 620 290" role="img" aria-label="능동 수동 QT의 만기별 발표 효과">
+      <line x1="80" y1="240" x2="590" y2="240" stroke="#0A0A0A" stroke-width="1.5"/>
+      <line x1="80" y1="50" x2="80" y2="240" stroke="#0A0A0A" stroke-width="1.5"/>
+      <line x1="80" y1="240.0" x2="590" y2="240.0" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="244" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">0</text>
+      <line x1="80" y1="197.8" x2="590" y2="197.8" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="202" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">2</text>
+      <line x1="80" y1="155.6" x2="590" y2="155.6" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="160" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">4</text>
+      <line x1="80" y1="113.3" x2="590" y2="113.3" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="117" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">6</text>
+      <line x1="80" y1="71.1" x2="590" y2="71.1" stroke="#D6D6D6" stroke-width="1"/>
+      <text x="72" y="75" font-family="Segoe UI,sans-serif" font-size="10" fill="#6E6E6E" text-anchor="end">8</text>
+      <text x="123" y="234" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#6E6E6E" text-anchor="middle">비유의</text>
+      <rect x="143.8" y="142.9" width="40.8" height="97.1" fill="#2D7EAA"/>
+      <text x="164" y="137" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#2D7EAA" text-anchor="middle" font-weight="700">+4.6</text>
+      <text x="144" y="257" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">1y</text>
+      <rect x="230.5" y="104.9" width="40.8" height="135.1" fill="#0A0A0A"/>
+      <text x="251" y="99" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">+6.4</text>
+      <text x="292" y="234" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#6E6E6E" text-anchor="middle">비유의</text>
+      <text x="271" y="257" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">5y</text>
+      <rect x="357.9" y="71.1" width="40.8" height="168.9" fill="#0A0A0A"/>
+      <text x="378" y="65" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">+8.0</text>
+      <text x="419" y="234" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#6E6E6E" text-anchor="middle">비유의</text>
+      <text x="399" y="257" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">10y</text>
+      <rect x="485.4" y="109.1" width="40.8" height="130.9" fill="#0A0A0A"/>
+      <text x="506" y="103" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle" font-weight="700">+6.2</text>
+      <text x="547" y="234" font-family="Segoe UI,sans-serif" font-size="8.5" fill="#6E6E6E" text-anchor="middle">비유의</text>
+      <text x="526" y="257" font-family="Segoe UI,sans-serif" font-size="10.5" fill="#0A0A0A" text-anchor="middle">30y</text>
+      <rect x="420.0" y="56.0" width="11.0" height="11.0" fill="#0A0A0A"/>
+      <text x="437" y="66" font-family="Segoe UI,sans-serif" font-size="10" fill="#0A0A0A">능동 QT (매각) — 듀레이션 채널</text>
+      <rect x="420.0" y="76.0" width="11.0" height="11.0" fill="#2D7EAA"/>
+      <text x="437" y="86" font-family="Segoe UI,sans-serif" font-size="10" fill="#0A0A0A">수동 QT (미재투자) — 신호 채널</text>
+      <text x="24" y="150" font-family="Segoe UI,sans-serif" font-size="11" fill="#0A0A0A" text-anchor="middle" transform="rotate(-90 24 150)">2일 발표 효과 (bp)</text>
+    </svg>
+    <figcaption><b>읽는 법.</b> 발표 유형별·만기별 2일 효과(bp, 논문 Table 3.3의 유의 추정치). <b>능동 QT</b>(매각, 검은 막대)는 5y +6.4, 10y +8.0, 30y +6.2로 장기에 실리고 곡선을 스티프닝시킵니다 — 듀레이션(텀프리미엄) 채널의 지문. <b>수동 QT</b>(미재투자, 파란 막대)는 1y +4.6만 유의하고 단기 OIS가 함께 움직입니다 — 신호 채널의 지문. 표기 안 된 칸은 비유의 추정치.</figcaption>
+  </div>
+</figure>
+<p>그림이 말하는 바는 분명합니다. 능동 QT는 장기(5·10·30년)에 효과가 실리고 곡선을 가파르게 합니다 — 물량(듀레이션)이 늘어 텀프리미엄이 오른다는 듀레이션 채널의 지문입니다. 수동 QT는 단기(1년)에만 유의하고 단기 정책금리 기대(OIS)가 함께 움직입니다 — "QT를 시작할 만큼 매파적"이라는 신호 채널의 지문입니다.</p>
+<p>결정적 검증은 <b>포워드 가이던스 통제</b>입니다. 정책 경로 기대(OIS)를 통제하면 어떻게 될까요?</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction 각주 12 (p.5)</div>
+  <p class="src-en">"We attempt to assess any such bias in extensions by controlling for changes in policy expectations. This reduces the estimated effects of QT at shorter horizons, but has minimal impact on longer duration yields or from Active QT."</p>
+  <p class="src-ko">우리는 정책 기대의 변화를 통제하여 그러한 편의를 확장 분석에서 평가하려 한다. 이는 단기 만기에서 QT의 추정 효과를 줄이지만, 장기 듀레이션 수익률이나 능동 QT의 효과에는 거의 영향을 주지 않는다.</p>
+</blockquote>
+<p>이 한 줄이 두 채널을 깔끔하게 갈라냅니다. 정책 기대를 통제하자 <b>수동(단기) 효과는 줄어들고</b>(그 효과가 "기대 재가격" = 신호였다는 뜻), <b>능동(장기) 효과는 그대로 남습니다</b>(매각이 기대와 별개로 듀레이션 공급을 움직였다는 뜻). 곧 수동 QT는 신호 채널, 능동 QT는 듀레이션 채널이라는 식별입니다. 한편 타국으로의 스필오버는 매우 작았습니다.</p>
+
+<!-- ============================================================ s8 -->
+<h3 class="sec" id="s8"><span class="sn">8</span> 이행 효과(§4) — 플로우는 0, 재고는 흔적 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">발표가 아니라 실제 매각·상환 그 자체는 가격을 움직였을까요? 그리고 시장은 정말 멀쩡했을까요?</p>
+
+<h4 class="sub">플로우 효과 — 실행일의 가격 효과는 거의 0</h4>
+<p>§4는 발표에서 <b>이행</b>으로 넘어갑니다 — 중앙은행이 실제로 보유를 줄이는 날입니다. 결과는 의외로 조용합니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.6, 재구성)</div>
+  <p class="src-en">"for the narrow implementation windows, we do not find evidence that QT has distorted pricing of government bonds in the secondary market."</p>
+  <p class="src-ko">좁은 이행 창에서는, QT가 유통시장에서 국채 가격을 왜곡했다는 증거를 찾지 못한다.</p>
+</blockquote>
+<p>QT 실행일의 금리 변화는 비실행일과 유의하게 다르지 않았고, 능동 매각된 종목과 같은 날 팔리지 않은 비슷한 종목 사이에도 수익률 차이가 없었습니다. 곧 "플로우(그날 그 물량) 자체"의 가격 효과는 거의 0 — 시장이 잘 소화했다는 뜻입니다. 다만 §5의 식별 한계대로, 천천히 누적되는 <b>재고(stock)</b> 효과는 이 좁은 창으로 못 잡습니다.</p>
+
+<h4 class="sub">재고 효과 — 단기자금 스프레드와 편의수익률</h4>
+<p>시간을 두고 보유가 쌓여 줄면 흔적이 남습니다. 두 곳입니다.</p>
+<ul class="body">
+  <li><b>단기자금 스프레드</b> — 준비금이 줄수록 익일물 자금 시장이 빡빡해져, 익일물 금리와 중앙은행 예치금리의 스프레드가 오릅니다. 미국에서는 지급준비금/GDP가 1%p 줄 때 익일물 스프레드가 약 +0.9bp(은행 자산 대비로 보면 +2bp) 올랐습니다.</li>
+  <li><b>편의수익률(스왑 스프레드)</b> — 중앙은행의 국채 보유 비중이 10%p 줄면 스왑 스프레드(편의수익률의 대리)가 약 −6.4bp 내렸습니다. 국채 공급이 늘어 "희소한 안전자산" 지위가 약해졌다는 뜻입니다.</li>
+</ul>
+<div class="note"><b>미국의 반전 — ON RRP라는 배수구.</b> 보통 QT는 은행 지급준비금을 줄여 자금시장을 조입니다. 그런데 미국 QT2에서는 비은행의 현금이 먼저 역레포(ON RRP)에서 빠져나와 신규 국채 발행을 흡수해 줬습니다(ON RRP 잔액 2.2조 → 0.68조 달러). 그 덕에 정작 은행 지급준비금은 GDP의 0.7%만 줄었고, 연방기금금리−준비금금리 스프레드도 안정적이었습니다. 같은 QT라도 부채 쪽 구성(어디서 돈이 빠지나)에 따라 자금시장 충격이 크게 달라진다는 것을 보여 주는 사례입니다.</div>
+<p>유동성도 점검합니다. 최근 국채시장 유동성이 나빠지긴 했지만, 이는 QT보다 <b>금리 변동성</b>과 더 강하게 연동되어 있었습니다. 그리고 국채 입찰의 응찰배수(bid-to-cover)는 QT 중에도 유지되거나 오히려 소폭 올라, QT가 입찰 수요를 떨어뜨리지는 않았습니다.</p>
+
+<!-- ============================================================ s9 -->
+<h3 class="sec" id="s9"><span class="sn">9</span> 자금순환(§5) — 국내 비은행, 미국은 헤지펀드 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">중앙은행이 국채를 내놓으면 누가 받아 갈까요? 그리고 그 받아 간 주체가 사라지면?</p>
+
+<p>QT가 조용했던 진짜 이유는 누군가가 빈자리를 채웠기 때문입니다. §5는 그 주체를 찾습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Abstract</div>
+  <p class="src-en">"We find that increased demand by domestic nonbanks has largely compensated for reduced bond holdings by central banks."</p>
+  <p class="src-ko">국내 비은행의 수요 증가가 중앙은행의 채권 보유 감소를 대체로 메워 주었음을 우리는 발견한다.</p>
+</blockquote>
+<p>IMF 자료의 패널 회귀에서, 국내 비은행 투자자는 모든 시기에 걸쳐 중앙은행 보유 변화의 상당 부분을 흡수했고, <b>QT 시기에는 더 많이</b> 흡수했습니다. 미국에서는 이 변화가 팬데믹 후 QT2에서 더 강했습니다. 그리고 그 미국 비은행의 정체가 §1.4·§1.5에서 본 그 주체와 같습니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.7)</div>
+  <p class="src-en">"In the US, the investor group "households" (which includes hedge funds) has been a particularly important replacement for the Fed's security unwind during QT."</p>
+  <p class="src-ko">미국에서는 "가계"(헤지펀드를 포함하는) 투자자 그룹이 QT 기간 연준의 증권 축소를 메우는 특히 중요한 대체자였다.</p>
+</blockquote>
+<p>미국 Flow of Funds의 "가계"는 잔여 항목이라 사실은 헤지펀드를 주로 가리킵니다. 반사실 분석에서, QT 시기 연준 비중이 줄 때 "가계"는 비-QT 시기가 예측하는 것보다 <i>더 많이</i> 국채를 사들였고, 반대로 외국인(주로 외국 중앙은행)은 연준과 함께 보유를 줄였습니다. 다만 저자들은 곧장 단서를 답니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.7)</div>
+  <p class="src-en">"While these results suggest a change in investor behavior during QT episodes, we would caution against a causal interpretation of these findings."</p>
+  <p class="src-ko">이 결과가 QT 국면에서 투자자 행동의 변화를 시사하기는 하지만, 우리는 이 발견을 인과로 해석하는 데 신중하기를 권한다.</p>
+</blockquote>
+<p>이 단서가 중요합니다. §5의 회귀는 상관일 뿐 인과가 아닙니다 — 미국 밖에서는 QT가 단 한 번, 2년도 안 되는 기간에, 그것도 공격적 금리 인상과 겹쳐 일어났기 때문입니다. 투자자 비중의 이동이 QT 때문인지 동시에 진행된 긴축 때문인지 가릴 수 없습니다. 결과를 과장하지 않고 상관의 지위에 두는 정직함이 이 절의 특징입니다.</p>
+
+<!-- ============================================================ s10 -->
+<h3 class="sec" id="s10"><span class="sn">10</span> 종합 수사 — "페인트 마르기"와 "물 끓이기" 사이 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">세 측정을 합치면 QT의 크기를 한 문장으로 어떻게 말할 수 있을까요? 그리고 그 평온함은 계속될까요?</p>
+
+<p>세 측정의 결론을 한데 모으면, QT의 크기는 두 극단 사이에 있습니다. 2017년 옐런 의장은 QT가 "페인트 마르는 것을 지켜보는 일"처럼 조용할 것이라 했고, 반대편 우려는 "QE를 그대로 역재생"하는 큰 충격이었습니다. 저자들의 종합 판정은 그 중간입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · Abstract</div>
+  <p class="src-en">"This series of cross-country results suggests that QT has had more of an impact than "paint drying", but far less than simply reversing the effects of the quantitative easing programs launched during periods of market stress. Looking ahead, although QT has been smooth to date, frictions could increase in the future so that QT quickly evolves into more like watching "water boil"."</p>
+  <p class="src-ko">이 일련의 다국 결과는 QT가 "페인트 마르기"보다는 더 큰 영향을 미쳤지만, 시장 스트레스기에 시작된 양적완화 프로그램의 효과를 단순히 되돌리는 것보다는 훨씬 작았음을 시사한다. 앞을 보면, QT가 지금까지는 매끄러웠으나 앞으로 마찰이 커져 "물 끓이기"를 지켜보는 것에 더 가깝게 빠르게 바뀔 수 있다.</p>
+</blockquote>
+<p>마지막 비유가 이 보고서의 핵심 경고입니다. 지금까지 QT가 조용했던 것은 평균적·선형적 관계에서의 이야기일 뿐입니다. 준비금이 어느 선 아래로 내려가면, 2019년 9월 미국 레포 발작처럼 <b>갑자기 비선형적으로</b> 자금시장이 발작할 수 있습니다. 그 "임계점(tipping point)"이 어디인지는 이 표본으로 정밀히 알 수 없습니다 — 다른 경제 여건에 따라 그 수준도 달라지기 때문입니다. "페인트가 마르는" 평온함이 "물이 끓는" 발작으로 언제 바뀔지 모른다는 것, 그래서 재고 변수(준비금·ON RRP·익일물 스프레드)를 계속 지켜봐야 한다는 것이 정책 함의입니다.</p>
+
+<!-- ============================================================ s11 -->
+<h3 class="sec" id="s11"><span class="sn">11</span> 비판적 읽기 — 네 가지 한계 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">이 보고서의 결론은 어디까지 믿을 수 있고, 무엇을 조심해야 할까요?</p>
+
+<p>저자들은 결론을 네 가지 한계와 함께 내놓습니다. 모두 본문에서 직접 밝힌 것입니다.</p>
+<blockquote class="src">
+  <div class="src-tag">원문 · §1 Introduction (p.7)</div>
+  <p class="src-en">"almost all of the QT events in this analysis occurred during the unusual post-pandemic recovery. As a result, the relationships may not apply during standard recoveries or periods of slow growth."</p>
+  <p class="src-ko">이 분석의 QT 사건은 거의 전부 이례적인 팬데믹 후 회복기에 일어났다. 그 결과, 이 관계들은 표준적 회복기나 저성장기에는 적용되지 않을 수 있다.</p>
+</blockquote>
+<p>이 첫 한계를 포함해, 저자들이 본문에서 밝힌 한계는 다음 네 가지입니다.</p>
+<ul class="body">
+  <li><b>한계 ① — 이례적 표본.</b> 거의 모든 QT 사건이 팬데믹 후 회복기에 몰려 있습니다. 국내 비은행의 강한 국채 수요도 팬데믹 부양으로 풀린 막대한 현금에서 왔을 수 있어, 다음번에는 그 흡수자가 없을 수 있습니다.</li>
+  <li><b>한계 ② — 관측치 부족·이질성.</b> 7개국이라는 장점에도 표본은 여전히 작고(특히 발표 효과), 나라마다 금융 구조가 달라 효과가 크게 달라질 수 있습니다.</li>
+  <li><b>한계 ③ — 하한 편의.</b> 예상된 발표의 선반영과 천천히 타는 재고 효과 때문에, 발표·이행 효과 추정치는 진짜 영향을 과소평가할 수 있습니다(§5).</li>
+  <li><b>한계 ④ — 국채 공급 미통제.</b> QT와 동시에 재정당국이 발행의 시기·듀레이션을 조정했을 수 있는데, 이를 통제하지 못해 QT 효과가 그만큼 가려졌을 수 있습니다.</li>
+</ul>
+<p>그리고 가장 무거운 다섯 번째 — 지금까지의 작은 효과가 미래에도 유지된다는 보장은 없다는 점입니다. 준비금이 줄수록 매끄러운 조정이 갑자기 날카로운 변동으로 바뀔 수 있고(2019년 미국), 그 임계 수준은 정밀히 추정할 수 없습니다.</p>
+
+<!-- ============================================================ s12 -->
+<h3 class="sec" id="s12"><span class="sn">12</span> 종합 · 셀프 체크 <span class="chip">확정 보고서</span></h3>
+<p class="lead-q">이 보고서가 분명히 보인 것은 무엇이고, §1.4(ESX)와 함께 읽으면 무엇이 더 보일까요?</p>
+
+<h4 class="sub">종합 — 이 보고서를 한 문단으로</h4>
+<p>Du·Forbes·Luzzetti는 2022년에야 생긴 다국 QT 표본으로, 같은 정책을 세 측정으로 삼각측량했습니다. 발표는 장기금리를 1건당 4~8bp(누적 20~26bp) 올리고 곡선을 스티프닝했으며, 능동 QT는 듀레이션 채널·수동 QT는 신호 채널로 갈렸습니다. 실제 이행 자체의 가격 효과는 미미했고(플로우는 0), 재고가 쌓여 줄며 단기자금 스프레드와 편의수익률에만 흔적을 남겼습니다. 비운 자리는 국내 비은행, 미국에서는 헤지펀드가 채웠습니다. 종합하면 QT는 "페인트 마르기"보다 크고 "QE 역재생"보다 작았지만, 준비금이 임계 아래로 가면 "물 끓이기"로 돌변할 수 있습니다.</p>
+<div class="note"><b>§1.4(ESX)와 나란히 읽기 — QT의 진짜 크기는 두 추정 사이에 있습니다.</b> 이 보고서의 발표 효과(미국 QT2 +21bp)는 좁은 이벤트 창의 <b>하한</b>입니다. 반면 §1.4 ESX는 부문별 탄력성으로 프로그램 전 기간을 적분해 QT2를 +80bp로 환산합니다(상한 성격). 둘은 모순이 아니라 같은 정책의 두 측정 — QT의 "진짜 전체 효과"는 발표 효과 +20여 bp와 탄력성 적분 +80bp 사이 어딘가에 있습니다. 두 논문을 같이 읽어야 그 범위가 잡힙니다. 헤지펀드가 흡수의 중심이라는 서사도 두 논문에서 똑같이 확인됩니다.</div>
+
+<details class="key">
+  <summary>셀프 체크 — 채널과 비선형</summary>
+  <div class="keybody">
+    <p><b>Q1.</b> 포워드 가이던스(정책 경로 기대)를 통제하면 수동 QT의 효과가 사라지는데 능동 QT의 효과는 남습니다. 이 대비가 식별한 것은 무엇인가요?</p>
+    <p><b>A1.</b> 수동 QT의 금리 효과가 "공급이 늘어서"가 아니라 "정책 경로 기대가 매파적으로 재가격되어서"임을 — 곧 신호 채널임을 식별한 것입니다. 같은 통제에 능동 QT 효과가 그대로 남는 것은, 매각이 기대 경로와 별개로 듀레이션 공급(텀프리미엄)을 움직였다는 뜻 — 듀레이션 채널입니다.</p>
+    <p><b>Q2.</b> 이 보고서의 추정치가 "하한"인 이유 두 가지를 식별 설계에서 찾아 보세요.</p>
+    <p><b>A2.</b> ① 예상된 발표는 가격에 선반영되어 2일 창에 안 잡힙니다(예상될수록 0 쪽으로 편향). ② 재고 효과는 발표일이 아니라 보유가 줄어드는 수개월에 걸쳐 천천히 누적되어 좁은 이벤트 창 밖에 있습니다. 그래서 QT의 진짜 전체 효과는 이 발표 효과보다 큽니다.</p>
+    <p><b>Q3.</b> 미국 QT2에서 자금시장이 멀쩡했던 까닭은 무엇이고, 그것이 왜 안심의 근거가 못 되나요?</p>
+    <p><b>A3.</b> 비은행의 현금이 ON RRP에서 먼저 빠져나와 발행을 흡수해 준 덕에(2.2조→0.68조 달러), 은행 지급준비금은 거의 줄지 않았습니다. 그러나 ON RRP가 바닥나면 그다음부터는 준비금이 직접 줄기 시작하고, 어느 임계 아래로 가면 2019년 9월처럼 갑자기 발작할 수 있습니다 — "물 끓이기"의 위험은 그때 시작됩니다.</p>
+  </div>
+</details>
+
+<div class="refs">
+  <h2>참고 — 원문과 핵심 인용</h2>
+  <ol>
+    <li><b>해부 대상.</b> Du, W., Forbes, K., &amp; Luzzetti, M. N. (2024). <i>Quantitative Tightening Around the Globe: What Have We Learned?</i> NBER Working Paper 32321 · 2024 US Monetary Policy Forum. 동봉 PDF: <code>papers/du_forbes_luzzetti.pdf</code>. (인용은 원문에서 직접 옮겼으며, 워킹페이퍼 PDF 추출 과정의 합자(ligature) 오류는 실제 원문 철자로 바로잡았습니다.)</li>
+    <li>Yellen, J. (2017) — QT가 "페인트 마르기"처럼 조용할 것이라는 비유의 출처.</li>
+    <li>Greenlaw, Hamilton, Harris, West (2018 USMPF) — QE 효과 문헌의 요약(비교 기준선).</li>
+    <li>Vissing-Jorgensen (2023) — 준비금 "임계점(tipping point)" 논의.</li>
+    <li>Carpenter et al. (2013) — QE 시기 가계(헤지펀드 포함)가 주된 매도자였다는 선행 증거(§9와 대칭).</li>
+    <li>관련 시리즈: §1.4 Eren·Schrimpf·Xia(2026) <i>The Demand for Government Debt</i> — 부문별 탄력성으로 QT를 +80bp로 적분(이 보고서 발표 효과의 상한 짝).</li>
+  </ol>
+  <p class="disclaimer"><b>판본·정직성 고지.</b> 본 노트의 인용은 NBER WP 32321 원문에서 직접 따왔고, 수치는 본문·초록·Table 3.3에서 인용했습니다. 능동/수동 만기별 추정치는 Table 3.3의 유의 계수입니다. 워킹페이퍼 본문은 PDF 추출 시 합자(ti·fi·fl 등)가 깨져 들어와, 인용 시 실제 원문 철자로 복원했습니다(초록은 깨끗하게 추출됨). 피인용수는 정확히 확인하지 못해 "미확인"으로 둡니다. 본 노트는 학습용 정독 해설로, 투자·정책 자문이 아닙니다.</p>
+</div>
+
+</div><!-- /content -->
+<div class="panel-rail">
+<aside class="tool-panel nav-panel">
+<div class="p-head">— Contents · 목차 —</div>
+<div class="p-grp">문제·사전지식</div>
+<a href="#s1"><span class="nl-n">1</span><span>표본 1→8</span></a>
+<a href="#s2"><span class="nl-n">2</span><span>능동/수동·두 채널</span></a>
+<a href="#s3"><span class="nl-n">3</span><span>7개국 전략(§2)</span></a>
+<div class="p-grp">측정 ① 발표 효과</div>
+<a href="#s4"><span class="nl-n">4</span><span>데이터</span></a>
+<a href="#s5"><span class="nl-n">5</span><span>이벤트 스터디(§3)</span></a>
+<a href="#s6"><span class="nl-n">6</span><span>발표 효과 4~8bp</span></a>
+<a href="#s7"><span class="nl-n">7</span><span>능동/수동 채널</span></a>
+<div class="p-grp">측정 ②③</div>
+<a href="#s8"><span class="nl-n">8</span><span>이행 효과(§4)</span></a>
+<a href="#s9"><span class="nl-n">9</span><span>자금순환(§5)</span></a>
+<div class="p-grp">종합·평가</div>
+<a href="#s10"><span class="nl-n">10</span><span>페인트/물끓이기</span></a>
+<a href="#s11"><span class="nl-n">11</span><span>네 가지 한계</span></a>
+<a href="#s12"><span class="nl-n">12</span><span>종합·셀프체크</span></a>
+</aside>
+<aside class="tool-panel formula-panel">
+<div class="p-head" id="fpHead">— 패널 —</div>
+
+<div class="fcard" data-sec="s1">
+ <div class="fblock">
+  <div class="fb-note"><b>문제.</b> 2020년 전 QT 표본은 미국 1번뿐 → 2022년 7개국 동시 QT로 첫 다국 표본.</div>
+  <div class="fv-h">삼중 설계</div>
+  <div class="fv"><span class="s">①</span><span class="d">발표 효과(이벤트 스터디)</span></div>
+  <div class="fv"><span class="s">②</span><span class="d">이행 효과</span></div>
+  <div class="fv"><span class="s">③</span><span class="d">자금순환</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s2">
+ <div class="fblock">
+  <div class="fb-note"><b>두 채널.</b> 능동=듀레이션(텀프리미엄, 물량), 수동=신호(정책 기대).</div>
+  <div class="fv-h">핵심 구분</div>
+  <div class="fv"><span class="s">능동</span><span class="d">— 매각(장기·스티프닝)</span></div>
+  <div class="fv"><span class="s">수동</span><span class="d">— 미재투자(단기)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s3">
+ <div class="fblock">
+  <div class="fb-note"><b>§2.</b> QT가 금기에서 도구로 — QE종료 후 7개월·첫인상 후 3개월에 시작.</div>
+  <div class="fv-h">보유 감축(2023말)</div>
+  <div class="fv"><span class="s">40%</span><span class="d">— 캐나다·스웨덴</span></div>
+  <div class="fv"><span class="s">15%</span><span class="d">— 미국·영국</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s4">
+ <div class="fblock">
+  <div class="fb-note"><b>데이터.</b> 발표 48건(베이스라인 39) · 6개 중앙은행 보유 · IMF 구성.</div>
+  <div class="fv-h">발표 분류</div>
+  <div class="fv"><span class="s">19</span><span class="d">— 능동 QT 뉴스</span></div>
+  <div class="fv"><span class="s">32</span><span class="d">— 수동 QT 뉴스(3건 중복)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s5">
+ <div class="fblock">
+  <div class="fb-eq">\[\Delta y_{it}=\alpha_i+\sum_C\beta_C QT^C_{it}+\gamma' News_{it}+\varepsilon_{it}\]</div>
+  <div class="fb-note"><b>이벤트 스터디.</b> 2일 창. 시간 FE 제외(스필오버 보존).</div>
+  <div class="fv-h">통제(News)</div>
+  <div class="fv"><span class="s">금리</span><span class="d">— 정책금리 서프라이즈</span></div>
+  <div class="fv"><span class="s">경기</span><span class="d">— Citi 서프라이즈</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s6">
+ <div class="fblock">
+  <div class="fb-note"><b>발표 효과.</b> 1건 +4~8bp, 누적 +20~26bp(영국 +44~70).</div>
+  <div class="fv-h">미국 두 사이클(10y 누적)</div>
+  <div class="fv"><span class="s">+0.1bp</span><span class="d">— QT1(2017~19)</span></div>
+  <div class="fv"><span class="s">+21bp</span><span class="d">— QT2(2022~)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s7">
+ <div class="fblock">
+  <div class="fb-note"><b>채널 분리.</b> FG 통제 시 수동(단기)↓, 능동(장기) 그대로 → 신호 vs 듀레이션.</div>
+  <div class="fv-h">발표 효과(bp)</div>
+  <div class="fv"><span class="s">능동</span><span class="d">10y +8.0, 30y +6.2</span></div>
+  <div class="fv"><span class="s">수동</span><span class="d">1y +4.6만 유의</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s8">
+ <div class="fblock">
+  <div class="fb-note"><b>이행.</b> 플로우(실행일) 효과 ≈0. 재고 효과만 흔적.</div>
+  <div class="fv-h">재고 효과</div>
+  <div class="fv"><span class="s">+0.9bp</span><span class="d">— 준비금/GDP −1%p당 자금 스프레드</span></div>
+  <div class="fv"><span class="s">−6.4bp</span><span class="d">— CB보유 −10%p당 스왑 스프레드</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s9">
+ <div class="fblock">
+  <div class="fb-note"><b>자금순환.</b> 국내 비은행이 흡수, QT기엔 더. 미국=헤지펀드("가계").</div>
+  <div class="fv-h">주의</div>
+  <div class="fv"><span class="s">상관</span><span class="d">— 인과 아님(긴축과 동시)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s10">
+ <div class="fblock">
+  <div class="fb-note"><b>크기.</b> "페인트 마르기" &lt; QT &lt; "QE 역재생". 미래엔 "물 끓이기" 위험.</div>
+  <div class="fv-h">경고</div>
+  <div class="fv"><span class="s">임계</span><span class="d">— 준비금 tipping point(2019 재현)</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s11">
+ <div class="fblock">
+  <div class="fb-note"><b>한계 4.</b> ①팬데믹 표본 ②관측치 부족 ③하한 편의 ④공급 미통제.</div>
+  <div class="fv-h">+1</div>
+  <div class="fv"><span class="s">비선형</span><span class="d">— 미래 발작 배제 못 함</span></div>
+ </div>
+</div>
+
+<div class="fcard" data-sec="s12">
+ <div class="fblock">
+  <div class="fb-note"><b>§1.4와 짝.</b> 발표 효과(하한 +21) ↔ 탄력성 적분(상한 +80) 사이가 진짜 QT 효과.</div>
+  <div class="fv-h">공통 서사</div>
+  <div class="fv"><span class="s">헤지펀드</span><span class="d">— QT 흡수의 중심</span></div>
+ </div>
+</div>
+
+</aside>
+</div><!-- /with-layer-panel -->
+</div>
+
+<footer>Paper Study · Du–Forbes–Luzzetti (2024) — Quantitative Tightening Around the Globe · 정독 노트</footer>
+
+<script>
+function showToast(){
+  var t=document.getElementById('toast');
+  t.style.opacity='1'; clearTimeout(t._tmo);
+  t._tmo=setTimeout(function(){t.style.opacity='0';},1300);
+}
+function fallbackCopy(text){
+  var ta=document.createElement('textarea');
+  ta.value=text; ta.style.position='fixed'; ta.style.top='-1000px';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+function copyTeX(el){
+  var tex=el.getAttribute('data-tex');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(tex).then(showToast,function(){fallbackCopy(tex);showToast();});
+  }else{fallbackCopy(tex);showToast();}
+}
+document.querySelectorAll('.eq').forEach(function(el){
+  el.textContent='\\['+el.getAttribute('data-tex')+'\\]';
+  el.addEventListener('click',function(){copyTeX(el);});
+  el.title='클릭하면 LaTeX 소스가 복사됩니다';
+});
+document.querySelectorAll('.eqi').forEach(function(el){
+  el.textContent='\\('+el.getAttribute('data-tex')+'\\)';
+  el.addEventListener('click',function(){copyTeX(el);});
+  el.title='클릭하면 LaTeX 소스가 복사됩니다';
+});
+</script>
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},
+  svg:{fontCache:'global'},
+  options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js" id="MathJax-script"></script>
+
+<script>
+(function(){
+  var links={};
+  document.querySelectorAll('.nav-panel a').forEach(function(x){
+    links[x.getAttribute('href').slice(1)]=x;
+  });
+  var fcards={};
+  document.querySelectorAll('.fcard').forEach(function(c){
+    fcards[c.getAttribute('data-sec')]=c;
+  });
+  var fpHead=document.getElementById('fpHead');
+  var targets=Array.prototype.slice.call(document.querySelectorAll('h3.sec[id]'));
+  var secName={};
+  targets.forEach(function(t){
+    var c=t.cloneNode(true); var sn=c.querySelector('.sn'); if(sn) sn.parentNode.removeChild(sn);
+    var chip=c.querySelector('.chip'); if(chip) chip.parentNode.removeChild(chip);
+    secName[t.id]=c.textContent.trim().replace(/\s+/g,' ');
+  });
+  var cur=null;
+  function activate(id){
+    if(cur===id)return;
+    if(cur&&links[cur])links[cur].classList.remove('active');
+    if(links[id])links[id].classList.add('active');
+    cur=id;
+    for(var k in fcards){fcards[k].classList.toggle('fc-on',k===id);}
+    if(fpHead&&secName[id])fpHead.textContent='— '+secName[id]+' —';
+  }
+  function spy(){
+    var line=window.innerHeight*0.2,best=null;
+    targets.forEach(function(t){ if(t.getBoundingClientRect().top<line)best=t.id; });
+    if(best)activate(best);
+  }
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',spy,{passive:true});
+  window.addEventListener('load',spy);
+  if(window.MathJax&&MathJax.startup&&MathJax.startup.promise){MathJax.startup.promise.then(spy);}
+  spy();
+})();
+</script>
+</body>
+</html>

@@ -18,6 +18,7 @@
 |---|---|
 | **The Demand for Government Debt** — Eren, Schrimpf, Xia (Management Science, 2026) | [`The_Demand_for_Government_Debt_Eren-Schrimpf-Xia_2026.html`](The_Demand_for_Government_Debt_Eren-Schrimpf-Xia_2026.html) |
 | **Granular Treasury Demand with Arbitrageurs** — Jansen, Li, Schmid (NBER WP 33243, 2024; rev. 2026) | [`Granular_Treasury_Demand_with_Arbitrageurs_Jansen-Li-Schmid_2024.html`](Granular_Treasury_Demand_with_Arbitrageurs_Jansen-Li-Schmid_2024.html) |
+| **Quantitative Tightening Around the Globe: What Have We Learned?** — Du, Forbes, Luzzetti (NBER WP 32321 · USMPF, 2024) | [`Quantitative_Tightening_Around_the_Globe_Du-Forbes-Luzzetti_2024.html`](Quantitative_Tightening_Around_the_Globe_Du-Forbes-Luzzetti_2024.html) |
 
 ## 보는 법
 
